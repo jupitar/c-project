@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\androidDemo\\VitamioDemo-master\\vitamio2\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\video_player_bg_color.png",
+        "source": "D:\\androidDemo\\VitamioDemo-master\\vitamio2\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\video_player_bg_color.png"
+    },
+    {
+        "merged": "D:\\androidDemo\\VitamioDemo-master\\vitamio2\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_action_scale.png",
+        "source": "D:\\androidDemo\\VitamioDemo-master\\vitamio2\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_action_scale.png"
+    },
+    {
+        "merged": "D:\\androidDemo\\VitamioDemo-master\\vitamio2\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_player_close_white.png",
+        "source": "D:\\androidDemo\\VitamioDemo-master\\vitamio2\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_player_close_white.png"
+    },
+    {
+        "merged": "D:\\androidDemo\\VitamioDemo-master\\vitamio2\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "D:\\androidDemo\\VitamioDemo-master\\vitamio2\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
+    }
+]

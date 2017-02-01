@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 配置搜索模式 -->
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:label="contactsList"
+    android:hint="@string/search_hint"
+    android:searchMode="queryRewriteFromText" />

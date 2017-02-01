@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="characters">
+
+        <item>C语言概述</item>
+        <item>算法介绍 </item>
+        <item>顺序程序设计</item>
+        <item>选择结构程序设计</item>
+        <item>循环结构程序设计</item>
+        <item>数组学习</item>
+        <item>初识函数 </item>
+        <item>善用指针</item>
+        <item>自定义数据类型</item>
+        <item>文件操作</item>
+    </string-array>
+
+</resources>
