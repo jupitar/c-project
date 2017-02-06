@@ -2,10 +2,13 @@ package activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     ImageView play_img, test_img, news_img, settings_img;
-    TextView play_text, test_text, news_text, settings_text;
+    TextView play_text, test_text, news_text, settings_text,top_description;
     private String data = "12";
     private int count = 0;
     String url1 = "http://baobab.wdjcdn.com/145076769089714.mp4";
@@ -178,6 +181,28 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    //重写返回键，关闭当前Activity
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==event.KEYCODE_BACK){
+           new AlertDialog.Builder(MainActivity.this).setTitle("系统提示").setMessage("您确定退出当前应用").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+               @Override
+               public void onClick(DialogInterface dialog, int which) {
+                   finish();
+
+               }
+           }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+               @Override
+               public void onClick(DialogInterface dialog, int which) {
+
+               }
+           }).show();
+
+        }
+
+        return true;
+    }
+
 
 
 }
