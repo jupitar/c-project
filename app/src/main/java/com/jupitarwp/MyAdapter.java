@@ -74,6 +74,9 @@ public class MyAdapter extends BaseAdapter{
         size++;
         notifyDataSetChanged();
     }
+   public void  notifyData(){
+        notifyDataSetChanged();
+    }
 
 
 

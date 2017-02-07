@@ -20,4 +20,7 @@ public class URLUtils {
     public static String MOVIE_SERVLET=BASIC_URL+"schoolproject/servlet/MoviesServlet";
     //获取上次观看视频信息servlet
     public static String LAST_INFOR_SERVLET=BASIC_URL+"schoolproject/servlet/LastMovieServlet";
+//获取视频评论列表
+    public static String COMMENT_SERVLET=BASIC_URL+"schoolproject/servlet/CommentServlet";
+
 }

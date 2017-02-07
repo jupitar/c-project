@@ -3,12 +3,14 @@ package activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -24,10 +26,12 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jupitarwp.MyAdapter;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import bean.CommentsBean;
@@ -37,9 +41,17 @@ import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.Vitamio;
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import utils.CustomMediaController;
 import utils.DensityUtil;
 
+import static utils.URLUtils.COMMENT_SERVLET;
 import static utils.URLUtils.Movie_URL;
 
 /*视频播放界面
@@ -92,6 +104,11 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
                     isVisible=false;
                     control_layout.setVisibility(View.GONE);
                     break;
+                case 3:
+                    commentsBeanList=(List<CommentsBean> )msg.obj;
+                    myAdapter.notifyData();
+
+
             }
 
 
@@ -145,12 +162,13 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
     private void initView() {
 
         comment_list= (ListView) findViewById(R.id.comment_list);
-        for(int i=0;i<5;i++){
-            CommentsBean commentsBean=new CommentsBean("wp"+i,i,i+"","comment:"+i,new Date(System.currentTimeMillis()),i+"");
-            commentsBeanList.add(commentsBean);
-        }
+       // for(int i=0;i<5;i++){
+           // CommentsBean commentsBean=new CommentsBean("wp"+i,i,i+"","comment:"+i,,i+"");
+           // commentsBeanList.add(commentsBean);
+      //
         myAdapter=new MyAdapter(this,commentsBeanList);
         comment_list.setAdapter(myAdapter);
+
 
 
        // ArrayAdapter<String> adapter = new ArrayAdapter<String>(
@@ -182,10 +200,54 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
         movieInfor = (MovieInfor) getIntent().getSerializableExtra("movieInfor");
         if (movieInfor != null) {
             url = Movie_URL + movieInfor.getPage() + "/" + movieInfor.getUrl();
+            getComment_list(movieInfor.getDetail_id());
         }
         pb = (ProgressBar) temp_video.findViewById(R.id.probar);
         downloadRateView = (TextView) temp_video.findViewById(R.id.download_rate);
         loadRateView = (TextView) temp_video.findViewById(R.id.load_rate);
+
+
+    }
+    //获取视频评论列表
+    private void getComment_list(String detail_id){
+        postConnection(detail_id);
+
+
+
+
+    }
+    public  void postConnection(String detail_id) {//post提交数据请求
+        OkHttpClient mOkHttpClient = new OkHttpClient();
+        RequestBody requestBodyPost = new FormBody.Builder().add("flag", 1+"").add("detail_id", detail_id).build();
+        Request requestPost = new Request.Builder().url(COMMENT_SERVLET).post(requestBodyPost).build();
+        mOkHttpClient.newCall(requestPost).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String result = response.body().string();
+                if (result.equals("null")) {
+                    Looper.prepare();
+                    Toast.makeText(getApplicationContext(),"当前还没有评论!",Toast.LENGTH_LONG).show();
+                    Looper.loop();
+                } else  {
+                    Gson gson = new Gson();
+                    commentsBeanList=gson.fromJson(result, new TypeToken<List<CommentsBean>>(){}.getType());
+                    Message msg=new Message();
+                    msg.what=3;
+                    msg.obj=commentsBeanList;
+                    handler.sendMessage(msg);
+
+
+
+
+                }
+            }
+        });
+
 
     }
 
@@ -204,6 +266,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
         mVideoView.start();
         mVideoView.setOnInfoListener(this);
         mVideoView.setOnBufferingUpdateListener(this);
+        //
         setOnclick();
 
     }
@@ -308,11 +371,8 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
         add_comment_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommentsBean commentsBean=new CommentsBean("wp"+k,k,k+"","comment:"+k,new Date(System.currentTimeMillis()),k+"");
-                myAdapter.addDatas(commentsBean);
-                k++;
-
-                //showInputDialog();
+                Intent intent=new Intent(PlayActivity.this,AddCommentActivity.class);
+                startActivity(intent);
             }
         });
         videoview_layout.setOnClickListener(new View.OnClickListener() {

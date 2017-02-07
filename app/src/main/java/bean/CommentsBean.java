@@ -4,8 +4,6 @@ package bean;
  * Created by Administrator on 2017/1/22.
  */
 
-import java.util.Date;
-
 /**
  * 视频评价数据
  */
@@ -14,19 +12,19 @@ public class CommentsBean {
     private int page;
     private String detail_id;
     private String comments;
-    private Date date;//评论时间
-    private String img_path;//图片路径
+    private String date;//评论时间
+
 
     public CommentsBean() {
     }
 
-    public CommentsBean(String user_id, int page, String detail_id, String comments, Date date, String img_path) {
+    public CommentsBean(String user_id, int page, String detail_id, String comments, String date ) {
         this.user_id = user_id;
         this.page = page;
         this.detail_id = detail_id;
         this.comments = comments;
         this.date = date;
-        this.img_path = img_path;
+
     }
 
     public String getUser_id() {
@@ -61,19 +59,13 @@ public class CommentsBean {
         this.comments = comments;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public String getImg_path() {
-        return img_path;
-    }
 
-    public void setImg_path(String img_path) {
-        this.img_path = img_path;
-    }
 }
