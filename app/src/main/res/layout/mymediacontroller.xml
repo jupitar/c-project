@@ -1,44 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-
     android:background="@drawable/video_player_bg_color"
-    android:layout_height="match_parent">
+    android:layout_height="250dp">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:background="#77000000"
-            android:layout_height="34dp">
-            <ImageButton
-                android:id="@+id/mediacontroller_top_back"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:background="@null"
-                android:src="@drawable/ic_player_close_white"/>
-            <TextView
-                android:id="@+id/mediacontroller_filename"
-                style="@style/MediaController_Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/mediacontroller_top_back"
-                android:ellipsize="marquee"
-                android:singleLine="true"
-                android:text="file name"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-        </RelativeLayout>
-        <ImageButton
-            android:id="@+id/mediacontroller_play_pause"
-            android:layout_width="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_height="wrap_content"
-            android:src="@drawable/paly_selector"
-            android:background="@null"/>
         <RelativeLayout
             android:id="@+id/operation_volume_brightness"
             android:layout_width="150dp"
@@ -64,7 +38,7 @@
                 android:text="32:22/45:00"
                 android:textColor="#ffffff"
                 android:textSize="10sp"
-                android:visibility="gone"
+               android:visibility="gone"
 
                 />
         </RelativeLayout>
@@ -82,28 +56,45 @@
                 android:layout_marginLeft="15dp"
                 android:text="33:33:33"
                 />
+
+            <ImageButton
+                android:id="@+id/srcreen_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/screen_controll"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                />
             <TextView
                 android:id="@+id/mediacontroller_time_total"
                 style="@style/MediaController_Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_toLeftOf="@id/srcreen_img"
+                android:layout_marginRight="10dp"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:text="33:33:33"/>
+                android:text="44:44:44"/>
+
             <SeekBar
                 android:id="@+id/mediacontroller_seekbar"
                 style="@style/MediaController_SeekBar"
+                android:thumb="@null"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/mediacontroller_time_total"
                 android:layout_toRightOf="@id/mediacontroller_time_current"
                 android:focusable="true"
-                android:max="1000"/>
+                android:max="100"/>
+
+
         </RelativeLayout>
+
     </RelativeLayout>
-</LinearLayout>
+
+</RelativeLayout>
 <!-- <ImageButton
                 android:id="@+id/mediacontroller_share"
                 android:layout_height="match_parent"
@@ -117,4 +108,9 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:layout_toLeftOf="@id/mediacontroller_share"
-                android:src="@drawable/ic_action_favorites"/>-->
+                android:src="@drawable/ic_action_favorites"/>
+
+
+
+
+              -->

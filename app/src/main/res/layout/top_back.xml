@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:background="@color/colorPrimary"
 
     >
@@ -10,13 +10,14 @@
     <TextView
         android:id="@+id/topDescip"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
         android:text="视频"
-        android:textSize="20sp"/>
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 
-</LinearLayout>
+</RelativeLayout>

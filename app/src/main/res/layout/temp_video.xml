@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp">
+
+    <io.vov.vitamio.widget.VideoView
+        android:id="@+id/buffer"
+        android:layout_width="match_parent"
+        android:layout_height="250dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:gravity="center"
+        >
+
+        <ProgressBar
+            android:id="@+id/probar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true" />
+        <TextView
+            android:id="@+id/download_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:textColor="#FFFFFF" />
+        <TextView
+            android:id="@+id/load_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+    <RelativeLayout
+
+        android:id="@+id/control_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#4c4c4c">
+
+
+
+    <RelativeLayout
+        android:id="@+id/control_layout"
+        android:background="#4c4c4c"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+       >
+
+
+        <ImageView
+            android:id="@+id/movie_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="-20dp"
+            android:layout_marginRight="-25dp"
+            android:src="@drawable/ic_player_pause" />
+
+        <ImageView
+            android:id="@+id/screen_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/full_screen"
+
+            />
+
+        <TextView
+            android:id="@+id/current_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/movie_pause"
+
+            android:text="33:33:33"
+            android:textColor="#ffff" />
+
+        <TextView
+            android:id="@+id/total_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/screen_control"
+            android:text="66:66:66"
+            android:textColor="#ffff" />
+
+        <SeekBar
+
+            android:id="@+id/movie_seekbar"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginRight="-10dp"
+            android:layout_toLeftOf="@id/total_time"
+            android:layout_toRightOf="@id/current_time"
+            android:progressDrawable="@drawable/seekbar_style"/>
+    </RelativeLayout>
+        </RelativeLayout>
+
+
+</RelativeLayout>
