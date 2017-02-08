@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import activity.R;
@@ -23,11 +24,11 @@ import bean.CommentsBean;
 public class MyAdapter extends BaseAdapter{
 
     private LayoutInflater mInflater;
-    private List<CommentsBean> commentsBeens;
-    int i=0,size;
-    public MyAdapter(Context context,List<CommentsBean> commentsBeens) {
+    private List<CommentsBean> commentsBeens=new ArrayList<CommentsBean>();
+    public int i=0,size;
+    public MyAdapter(Context context) {
 
-        this.commentsBeens=commentsBeens;
+
         mInflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -64,9 +65,10 @@ public class MyAdapter extends BaseAdapter{
         }else {
             holder = (ViewHolder) convertView.getTag();
         }
+        size=commentsBeens.size();
         holder.user_name.setText(commentsBeens.get(size-1-position).getUser_id());
         holder.user_comment.setText(commentsBeens.get(size-1-position).getComments());
-        holder.comment_time.setText(commentsBeens.get(size-1-position).getDate().toString());
+       // holder.comment_time.setText(commentsBeens.get(size-1-position).getDate().toString());
         return convertView;
     }
     public void addDatas(CommentsBean commentsBean){
@@ -74,9 +76,14 @@ public class MyAdapter extends BaseAdapter{
         size++;
         notifyDataSetChanged();
     }
-   public void  notifyData(){
+
+    public void setDatas(List<CommentsBean> commentsBeens){
+        this.commentsBeens=commentsBeens;
         notifyDataSetChanged();
+
     }
+
+
 
 
 

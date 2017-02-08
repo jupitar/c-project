@@ -337,6 +337,7 @@ public class PlayerFragment extends Fragment implements MyItemClickListener {
         if (movieInfor != null) {
             Intent intent = new Intent(getActivity(), PlayActivity.class);
             intent.putExtra("movieInfor", movieInfor);
+
            //Toast.makeText(getActivity(),movieInfor.getUrl(),Toast.LENGTH_LONG).show();
             startActivity(intent);
 

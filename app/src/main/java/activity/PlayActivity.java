@@ -1,8 +1,6 @@
 package activity;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -17,7 +15,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -84,6 +81,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
    List<String> str=new ArrayList<String>();
     List<CommentsBean> commentsBeanList=new ArrayList<CommentsBean>();
     MyAdapter myAdapter=null;
+    boolean  isFirst=true;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -105,8 +103,19 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
                     control_layout.setVisibility(View.GONE);
                     break;
                 case 3:
-                    commentsBeanList=(List<CommentsBean> )msg.obj;
-                    myAdapter.notifyData();
+                    commentsBeanList=(List<CommentsBean>)msg.obj;
+                    // for(int i=0;i<5;i++) {
+                        // CommentsBean commentsBean = new CommentsBean("wp" + i, i, i + "", "comment:" + i, i + "");
+                         //commentsBeanList.add(commentsBean);
+                     //}
+                    myAdapter.setDatas(commentsBeanList);
+
+
+
+
+
+
+
 
 
             }
@@ -162,12 +171,12 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
     private void initView() {
 
         comment_list= (ListView) findViewById(R.id.comment_list);
-       // for(int i=0;i<5;i++){
-           // CommentsBean commentsBean=new CommentsBean("wp"+i,i,i+"","comment:"+i,,i+"");
-           // commentsBeanList.add(commentsBean);
-      //
-        myAdapter=new MyAdapter(this,commentsBeanList);
+
+
+
+        myAdapter=new MyAdapter(getApplicationContext());
         comment_list.setAdapter(myAdapter);
+
 
 
 
@@ -244,6 +253,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
 
 
 
+
                 }
             }
         });
@@ -272,21 +282,12 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
     }
     //弹出添加评论对话框
     private void showInputDialog() {
+            Intent intent=new Intent(PlayActivity.this,AddCommentActivity.class);
+            startActivity(intent);
+            //finish();
     /*@setView 装入一个EditView
      */
-        final EditText editText = new EditText(PlayActivity.this);
-        AlertDialog.Builder inputDialog =
-                new AlertDialog.Builder(PlayActivity.this);
-        inputDialog.setTitle("我是一个输入Dialog").setView(editText);
-        inputDialog.setPositiveButton("确定",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(PlayActivity.this,
-                                editText.getText().toString(),
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }).show();
+
     }
 
     private void setOnclick() {
@@ -373,6 +374,8 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
             public void onClick(View v) {
                 Intent intent=new Intent(PlayActivity.this,AddCommentActivity.class);
                 startActivity(intent);
+                handler.removeMessages(UPDATE_UI);
+                handler.removeMessages(HIDENING);
             }
         });
         videoview_layout.setOnClickListener(new View.OnClickListener() {

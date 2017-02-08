@@ -7,15 +7,15 @@
 
     >
     <ImageView
-        android:id="@+id/top_back1"
+        android:id="@+id/t_back"
         android:layout_width="50dp"
         android:layout_height="30dp"
         android:src="@drawable/back"
-        android:layout_centerVertical="true"
-        />
+        android:layout_centerVertical="true"/>
+
 
     <TextView
-        android:id="@+id/topDescip"
+        android:id="@+id/topDescips"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
