@@ -68,7 +68,7 @@ public class MyAdapter extends BaseAdapter{
         size=commentsBeens.size();
         holder.user_name.setText(commentsBeens.get(size-1-position).getUser_id());
         holder.user_comment.setText(commentsBeens.get(size-1-position).getComments());
-       // holder.comment_time.setText(commentsBeens.get(size-1-position).getDate().toString());
+       holder.comment_time.setText(commentsBeens.get(size-1-position).getComment_time());
         return convertView;
     }
     public void addDatas(CommentsBean commentsBean){

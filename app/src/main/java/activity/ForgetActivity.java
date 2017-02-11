@@ -11,7 +11,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
 
 import org.json.JSONObject;
 
@@ -23,6 +26,9 @@ import cn.smssdk.SMSSDK;
  * 忘记密码界面，输入注册手机信息确认手机信息正确，进入到修改密码界面
  */
 public class ForgetActivity extends AppCompatActivity {
+    TextView r_text;
+    ImageView r_back;
+    View v;
     EditText f_tel, f_code;
     Button f_getCode, f_submit;
     String tel = "";
@@ -59,6 +65,11 @@ public class ForgetActivity extends AppCompatActivity {
         f_getCode = (Button) findViewById(R.id.getBtn);
         //提交按钮
         f_submit = (Button) findViewById(R.id.submit);
+        v=findViewById(R.id.forget_include);
+        r_text= (TextView) v.findViewById(R.id.mian_context);
+        r_text.setText("忘记密码界面");
+        r_back=(ImageView) v.findViewById(R.id.login_img);
+        r_back.setVisibility(View.INVISIBLE);
     }
 
     //获取验证码按钮监听
@@ -171,6 +182,7 @@ public class ForgetActivity extends AppCompatActivity {
         SMSSDK.submitVerificationCode("86", tel, f_code.getText().toString());//触发回调接口
 
     }
+    //
 
 
 }

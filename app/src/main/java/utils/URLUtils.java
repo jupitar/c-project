@@ -12,9 +12,9 @@ public class URLUtils {
 
     public static String LOCAL_URL="http://10.0.2.2:8080/";
     //视频URL
-    public static  String Movie_URL="http://192.168.1.101:8080/project/movie/";
+    public static  String Movie_URL="http://192.168.1.102:8080/project/movie/";
     //网络url
-    public static  String BASIC_URL="http://192.168.1.101:8080/";
+    public static  String BASIC_URL="http://192.168.1.102:8080/";
     //登录servlet
     public static String LOGIN_SERVLET=BASIC_URL+"schoolproject/servlet/LoginServlet";
     //注册servlet
@@ -27,6 +27,8 @@ public class URLUtils {
     public static String LAST_INFOR_SERVLET=BASIC_URL+"schoolproject/servlet/LastMovieServlet";
 //获取视频评论列表
     public static String COMMENT_SERVLET=BASIC_URL+"schoolproject/servlet/CommentServlet";
+    //更新视频信息
+    public static String UPDATE_MOVIE_SERVLET=BASIC_URL+"schoolproject/servlet/UpdateMovieServlet";
 //获取本机IP地址
     public static  void  getUrl(){
         InetAddress ia=null;

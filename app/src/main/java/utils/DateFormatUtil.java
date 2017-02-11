@@ -15,7 +15,7 @@ public class DateFormatUtil {
         Date date = new Date(current_time);
 
         SimpleDateFormat simpleformatter = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss");
+                "yyyy/MM/dd HH:mm:ss");
 
         String formatStr = simpleformatter.format(date);
         return formatStr;

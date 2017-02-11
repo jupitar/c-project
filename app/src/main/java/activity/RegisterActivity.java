@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -25,6 +27,9 @@ import static utils.URLUtils.REGISTER_SERVLET;
  */
 public class RegisterActivity extends AppCompatActivity {
     EditText name, password, tel;
+    TextView r_text;
+    ImageView r_back;
+    View v;
     String username, psw, _tel;
 
 
@@ -34,6 +39,17 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         init();
 
+    }
+
+    private void init() {
+        name = (EditText) findViewById(R.id._username);
+        password = (EditText) findViewById(R.id._password);
+        tel = (EditText) findViewById(R.id.tel);
+        v=findViewById(R.id.register_include);
+        r_text= (TextView) v.findViewById(R.id.mian_context);
+        r_text.setText("注册界面");
+        r_back=(ImageView) v.findViewById(R.id.login_img);
+        r_back.setVisibility(View.INVISIBLE);
     }
 
 
@@ -58,11 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void init() {
-        name = (EditText) findViewById(R.id._username);
-        password = (EditText) findViewById(R.id._password);
-        tel = (EditText) findViewById(R.id.tel);
-    }
+
 
     //获取用户名和密码
     private void getString() {

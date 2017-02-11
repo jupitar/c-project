@@ -16,17 +16,17 @@ public class MovieInfor implements Serializable{
     private String movie_name;//视频名称
     private String url;//视频url
     String hasFinished;//视频已经观看时长
-    String isFinished;//是否观看完
-    private String length;//视频时长
+    int  isFinished;//是否观看完
+    private String movie_length;//视频时长
 
     public MovieInfor() {
     }
 
-    public MovieInfor(String user_id, int page, String detail_id, String length, String isFinished, String hasFinished, String url, String movie_name) {
+    public MovieInfor(String user_id, int page, String detail_id, String length, int isFinished, String hasFinished, String url, String movie_name) {
         this.user_id = user_id;
         this.page = page;
         this.detail_id = detail_id;
-        this.length = length;
+        this.movie_length = length;
         this.isFinished = isFinished;
         this.hasFinished = hasFinished;
         this.url = url;
@@ -81,19 +81,19 @@ public class MovieInfor implements Serializable{
         this.hasFinished = hasFinished;
     }
 
-    public String getIsFinished() {
+    public int  getIsFinished() {
         return isFinished;
     }
 
-    public void setIsFinished(String isFinished) {
+    public void setIsFinished(int  isFinished) {
         this.isFinished = isFinished;
     }
 
-    public String getLength() {
-        return length;
+    public String getMovie_length() {
+        return movie_length;
     }
 
-    public void setLength(String length) {
-        this.length = length;
+    public void setMovie_length(String movie_length) {
+        this.movie_length = movie_length;
     }
 }

@@ -77,10 +77,10 @@ public class PlayerFragment extends Fragment implements MyItemClickListener {
                    adapter.setmDatas((List<MovieInfor>) msg.obj);
                    adapter.notifyDataSetChanged();
                    break;
-               case 3:
-                   ll_show.setVisibility(View.VISIBLE);
-                   movie_infor.setText("上次观看到" + (String) msg.obj);
-                   break;
+               /*case 3:
+                  // ll_show.setVisibility(View.VISIBLE);
+                   //movie_infor.setText("上次观看到" + (String) msg.obj);
+                   break;*/
            }
         }
     };
@@ -106,7 +106,7 @@ public class PlayerFragment extends Fragment implements MyItemClickListener {
         movie_infor = (TextView) v.findViewById(R.id.movie_infor);
         cancle_movie = (TextView) v.findViewById(R.id.cancel);
         //获取上次观影记录
-        getLastInfor();
+        //getLastInfor();
         mRecyclerView = (RecyclerView) v.findViewById(R.id.list);
         spinner = (Spinner) v.findViewById(R.id.character);
         spinner.setGravity(Gravity.RIGHT);
