@@ -1,11 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/av_play"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
+    android:layout_height="match_parent"
+    tools:context="activity.PlayActivity"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="在线测试界面"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/has_finished"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/modern_test"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="60dp"
+
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimary"
+        android:text="试题测试"
+        >
+
+    </Button>
+    <Button
+        android:id="@+id/look_error"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimary"
+        android:layout_gravity="center_horizontal"
+        android:text="错题查看"
+        >
+
+    </Button>
+
+
 
 </LinearLayout>
+
+

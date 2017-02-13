@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    android:orientation="vertical"
+    tools:context="activity.MainActivity">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="考试题目"/>
+
+    <RadioGroup
+        android:id="@+id/choicegroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="20dp"
+
+        >
+
+        <RadioButton
+            android:id="@+id/choiceA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="20dp"
+            android:text="A.选择题"
+
+
+            />
+
+
+        <RadioButton
+            android:id="@+id/choiceB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="B.选择题"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="20dp"
+
+            />
+
+        <RadioButton
+            android:id="@+id/choiceC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="C.选择题"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="20dp"
+
+            />
+        <RadioButton
+            android:id="@+id/choiceD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="20dp"
+            android:text="D.选择题"
+
+            />
+    </RadioGroup>
+
+
+
+</LinearLayout>
+
+
