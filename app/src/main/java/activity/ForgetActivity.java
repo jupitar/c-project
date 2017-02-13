@@ -69,7 +69,13 @@ public class ForgetActivity extends AppCompatActivity {
         r_text= (TextView) v.findViewById(R.id.mian_context);
         r_text.setText("忘记密码界面");
         r_back=(ImageView) v.findViewById(R.id.login_img);
-        r_back.setVisibility(View.INVISIBLE);
+        r_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     //获取验证码按钮监听
@@ -136,14 +142,20 @@ public class ForgetActivity extends AppCompatActivity {
             public void afterEvent(int event, int result, Object data) {
 
                 if (result == SMSSDK.RESULT_COMPLETE) {
+
+
                     //回调完成
                     if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
                         isRunning = false;//不需要再重新绘制按钮了
                         //提交验证码成功，则跳转到重置密码界面
-                        Intent intent = new Intent(ForgetActivity.this, SetPswActivity.class);
-                        intent.putExtra("tel", tel);
-                        finish();
-                        startActivity(intent);
+
+                            Intent intent = new Intent(ForgetActivity.this, SetPswActivity.class);
+                            intent.putExtra("tel", tel);
+                            finish();
+                            startActivity(intent);
+
+
+
 
                     } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                         //获取验证码成功

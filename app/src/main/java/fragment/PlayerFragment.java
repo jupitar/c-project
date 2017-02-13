@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import activity.MainActivity;
 import activity.PlayActivity;
 import activity.R;
 import bean.MovieInfor;
@@ -47,8 +48,8 @@ import static utils.URLUtils.MOVIE_SERVLET;
 //在线视频播放fragment
 
 public class PlayerFragment extends Fragment implements MyItemClickListener {
-    //保存用户名，密码信息
-    public static String[] users ={"wp1","123456wp"};
+    private MainActivity mainActivity;
+
     List<MovieInfor> mDatas;
     Spinner spinner;
     TextView textView, movie_infor, cancle_movie;
@@ -63,6 +64,7 @@ public class PlayerFragment extends Fragment implements MyItemClickListener {
     int page = 0;//选中视频章节
     int count = 0;//跳过的视频小节
     int k=0;
+    String userName="";
     String json = "";
     boolean  isFirst;
     Handler handler = new Handler() {
@@ -77,10 +79,7 @@ public class PlayerFragment extends Fragment implements MyItemClickListener {
                    adapter.setmDatas((List<MovieInfor>) msg.obj);
                    adapter.notifyDataSetChanged();
                    break;
-               /*case 3:
-                  // ll_show.setVisibility(View.VISIBLE);
-                   //movie_infor.setText("上次观看到" + (String) msg.obj);
-                   break;*/
+
            }
         }
     };
@@ -100,13 +99,17 @@ public class PlayerFragment extends Fragment implements MyItemClickListener {
     }
 
     private void init(View v) {//初始化相关数据
+         mainActivity= (MainActivity)getActivity();
+        userName= mainActivity.getName();
+
+
+
         mDatas = new ArrayList<MovieInfor>();
         ll_show = v.findViewById(R.id.ll_show);
         textView = (TextView) v.findViewById(R.id.changeOther);
         movie_infor = (TextView) v.findViewById(R.id.movie_infor);
         cancle_movie = (TextView) v.findViewById(R.id.cancel);
-        //获取上次观影记录
-        //getLastInfor();
+
         mRecyclerView = (RecyclerView) v.findViewById(R.id.list);
         spinner = (Spinner) v.findViewById(R.id.character);
         spinner.setGravity(Gravity.RIGHT);
@@ -124,7 +127,7 @@ public class PlayerFragment extends Fragment implements MyItemClickListener {
 
     public void postConnection() {//post提交数据请求
         OkHttpClient mOkHttpClient = new OkHttpClient();
-        RequestBody requestBodyPost = new FormBody.Builder().add("user_id", users[0]).build();
+        RequestBody requestBodyPost = new FormBody.Builder().add("user_id", userName).build();
         Request requestPost = new Request.Builder().url(LAST_INFOR_SERVLET).post(requestBodyPost).build();
         mOkHttpClient.newCall(requestPost).enqueue(new Callback() {
                                                        @Override
@@ -336,7 +339,9 @@ public class PlayerFragment extends Fragment implements MyItemClickListener {
         MovieInfor movieInfor = mDatas.get(postion);
         if (movieInfor != null) {
             Intent intent = new Intent(getActivity(), PlayActivity.class);
+
             intent.putExtra("movieInfor", movieInfor);
+            intent.putExtra("userName",userName);
 
            //Toast.makeText(getActivity(),movieInfor.getUrl(),Toast.LENGTH_LONG).show();
             startActivity(intent);

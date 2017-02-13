@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -35,15 +36,18 @@ import static utils.URLUtils.COMMENT_SERVLET;
  * 添加评论ctivity
  */
 public class AddCommentActivity extends AppCompatActivity {
-    public static String BROCAST_ACTION="UPDATE_DATA";
 
-
-    String username="wp1";//用户名
-    int page;
-    String detail_id="";
+    View add_include;
+    ImageView img_back;
+    TextView add_text;
     ImageView back_img;
     EditText comment_content;
     Button comment_btn;
+    public static String BROCAST_ACTION="UPDATE_DATA";
+    String username="";//用户名
+    int page;
+    String detail_id="";
+
     private MovieInfor movieInfor;
     long currentTime;
 
@@ -60,21 +64,25 @@ public class AddCommentActivity extends AppCompatActivity {
 
 
     private void initView() {
-
-        back_img=(ImageView)findViewById(R.id.add_back);
+        add_include=findViewById(R.id.add_include);
+        img_back= (ImageView) add_include.findViewById(R.id.login_img);
+        add_text=(TextView) add_include.findViewById(R.id.mian_context);
+        add_text.setText("添加评论界面");
         comment_content= (EditText)findViewById(R.id.add_comment);
         comment_btn= (Button) findViewById(R.id.comment_btn);
+
     }
     private void initData() {
         //获取用户名，视频章节
         movieInfor = (MovieInfor)getIntent().getSerializableExtra("movieInfor");
+        username=movieInfor.getUser_id();
         currentTime=getIntent().getLongExtra("currentTime",0);
         page=movieInfor.getPage();
         detail_id=movieInfor.getDetail_id();
     }
 
     private void setOnclick() {
-        back_img.setOnClickListener(new View.OnClickListener() {
+        img_back.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
@@ -170,6 +178,6 @@ public class AddCommentActivity extends AppCompatActivity {
         Intent intent=new Intent();
         setResult(0,intent);
         finish();
-        return super.onKeyDown(keyCode, event);
+        return true;
     }
 }

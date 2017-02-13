@@ -1,43 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
     >
 
-
-
     <include
-        android:id="@+id/top_layout"
+        android:id="@+id/add_include"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        layout="@layout/top_back">
-
-    </include>
-    <EditText
-        android:id="@+id/add_comment"
+        layout="@layout/top_back"
+        ></include>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="庆添加评论"
-        android:layout_below="@id/top_layout"
-        android:layout_marginTop="10dp"
-       />
-    <Button
-        android:id="@+id/comment_btn"
+        android:layout_below="@id/add_include"
+        android:layout_marginTop="20dp">
+        <EditText
+            android:id="@+id/add_comment"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="left"
+            android:hint="请输入您要添加的评论" />
+        <Button
+            android:id="@+id/comment_btn"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/add_comment"
 
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:text="添加"
+            android:layout_marginRight="10dp"
+            android:text="添加"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
 
-      android:layout_below="@id/add_comment"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
 
-        />
+
+            />
+
+
+    </RelativeLayout>
+
+
 
 
 

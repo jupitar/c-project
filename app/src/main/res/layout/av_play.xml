@@ -5,26 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="activity.PlayActivity">
+    <include
+        android:id="@+id/play_include"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/top_back"
+        >
+
+    </include>
     <RelativeLayout
         android:id="@+id/re_video"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@id/play_include"
         >
         <FrameLayout
             android:id="@+id/view_replace"
             android:layout_width="match_parent"
             android:layout_height="250dp">
         </FrameLayout>
-        <ImageView
-            android:id="@+id/back_img"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:background="#4f4f4f"
-            android:src="@drawable/back" />
+
     </RelativeLayout>
 
 
@@ -45,16 +47,17 @@
             android:layout_height="wrap_content"
             android:text="评论"
             android:textColor="#ff0011" />
-
-        <ListView
-            android:id="@+id/comment_list"
+        <FrameLayout
+            android:id="@+id/comment_frame"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:layout_below="@id/aaaa"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp">
 
-            />
+
+        </FrameLayout>
+
+
 
         <ImageView
             android:id="@+id/add_comment"

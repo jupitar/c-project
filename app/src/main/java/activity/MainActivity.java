@@ -13,26 +13,31 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import fragment.NewsFragment;
 import fragment.PlayerFragment;
 import fragment.SettingFragment;
 import fragment.TestFragment;
 
+
+
 public class MainActivity extends AppCompatActivity {
+    String userName,psw;
     PlayerFragment playerFragment;
     TestFragment testFragment;
-    NewsFragment newsFragment;
+
     SettingFragment settingFragment;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
-    ImageView play_img, test_img, news_img, settings_img;
-    TextView play_text, test_text, news_text, settings_text,top_description;
+    ImageView play_img, test_img,settings_img;
+    TextView play_text, test_text,settings_text;
+    TextView r_text;
+    ImageView r_back;
+    View v;
     private String data = "12";
     private int count = 0;
     String url1 = "http://baobab.wdjcdn.com/145076769089714.mp4";
     String url = "http://112.253.22.157/17/z/z/y/u/zzyuasjwufnqerzvyxgkuigrkcatxr/hc.yinyuetai.com/D046015255134077DDB3ACA0D\n" +
             "7E68D45.flv";
-    View v;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +47,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void init() {
+        allFind();
         Intent intent=getIntent();
-       // PlayerFragment.users[0]= intent.getStringExtra("username");
-       // PlayerFragment.users[1]= intent.getStringExtra("password");
-        play_img = (ImageView) findViewById(R.id.play_img);
-        play_text = (TextView) findViewById(R.id.play_text);
-        test_img = (ImageView) findViewById(R.id.test_img);
-        test_text = (TextView) findViewById(R.id.test_text);
-        news_img = (ImageView) findViewById(R.id.news_img);
-        news_text = (TextView) findViewById(R.id.news_text);
-        settings_img = (ImageView) findViewById(R.id.settings_img);
-        settings_text = (TextView) findViewById(R.id.settings_text);
+        userName= intent.getStringExtra("username");
+        psw=intent.getStringExtra("password");
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         playerFragment = new PlayerFragment();
@@ -60,6 +58,28 @@ public class MainActivity extends AppCompatActivity {
         play_img.setImageResource(R.mipmap.blue_play);
         play_text.setTextColor(Color.BLUE);
         fragmentTransaction.commit();
+    }
+
+    public void allFind(){
+        play_img = (ImageView) findViewById(R.id.play_img);
+        play_text = (TextView) findViewById(R.id.play_text);
+        test_img = (ImageView) findViewById(R.id.test_img);
+        test_text = (TextView) findViewById(R.id.test_text);
+
+        settings_img = (ImageView) findViewById(R.id.settings_img);
+        settings_text = (TextView) findViewById(R.id.settings_text);
+        v=findViewById(R.id.topBar);
+        r_text= (TextView) v.findViewById(R.id.mian_context);
+        r_text.setText("主界面");
+        r_back=(ImageView) v.findViewById(R.id.login_img);
+        r_back.setVisibility(View.INVISIBLE);
+    }
+
+    public String getName(){
+        return userName;
+    }
+    public String getPsw(){
+        return psw;
     }
 
     public void mulclick(View v) {
@@ -75,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 clearOther(0);
                 break;
             case R.id.ll_test:
+                r_text.setText("测试界面");
 
                 fragmentTransaction = fragmentManager.beginTransaction();
                 if (testFragment == null) {
@@ -85,20 +106,9 @@ public class MainActivity extends AppCompatActivity {
                 multisetting(v);
                 clearOther(1);
                 break;
-            case R.id.ll_news:
 
-                fragmentTransaction = fragmentManager.beginTransaction();
-                if (newsFragment == null) {
-                    newsFragment = new NewsFragment();
-                }
-
-                fragmentTransaction.replace(R.id.mainContent, newsFragment);
-                fragmentTransaction.commit();
-                multisetting(v);
-                clearOther(2);
-                break;
             case R.id.ll_settings:
-
+                r_text.setText("我的界面");
                 fragmentTransaction = fragmentManager.beginTransaction();
                 if (settingFragment == null) {
                     settingFragment = new SettingFragment();
@@ -118,16 +128,14 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 test_img.setImageResource(R.mipmap.gray_test);
                 test_text.setTextColor(Color.GRAY);
-                news_img.setImageResource(R.mipmap.gray_news);
-                news_text.setTextColor(Color.GRAY);
+
                 settings_img.setImageResource(R.mipmap.gray_me);
                 settings_text.setTextColor(Color.GRAY);
                 break;
             case 1:
                 play_img.setImageResource(R.mipmap.gray_play);
                 play_text.setTextColor(Color.GRAY);
-                news_img.setImageResource(R.mipmap.gray_news);
-                news_text.setTextColor(Color.GRAY);
+
                 settings_img.setImageResource(R.mipmap.gray_me);
                 settings_text.setTextColor(Color.GRAY);
                 break;
@@ -144,9 +152,10 @@ public class MainActivity extends AppCompatActivity {
                 play_text.setTextColor(Color.GRAY);
                 test_img.setImageResource(R.mipmap.gray_test);
                 test_text.setTextColor(Color.GRAY);
-                news_img.setImageResource(R.mipmap.gray_news);
-                news_text.setTextColor(Color.GRAY);
+                break;
         }
+
+
     }
 
     public void multisetting(View v) {
@@ -164,12 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
                 test_text.setTextColor(Color.BLUE);
                 break;
-            case R.id.ll_news:
-
-                news_img.setImageResource(R.mipmap.blue_news);
-
-                news_text.setTextColor(Color.BLUE);
-                break;
+           
             case R.id.ll_settings:
 
                 settings_img.setImageResource(R.mipmap.blue_me);

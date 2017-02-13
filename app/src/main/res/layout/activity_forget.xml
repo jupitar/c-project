@@ -1,85 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:layout="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+
     android:orientation="vertical"
     tools:context="activity.MainActivity">
+    <include
+        android:id="@+id/forget_include"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/top_back"
+        >
+
+    </include>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/_86" />
+            android:id="@+id/wrong_infor"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:textColor="#ef0b0b"/>
 
         <EditText
             android:id="@+id/f_phone"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:hint="@string/hintTelInfor"
+            android:gravity="left"
             android:inputType="number"
 
             />
+
     </LinearLayout>
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
 
+        android:layout_marginTop="40dp">
         <Button
             android:id="@+id/getBtn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
             android:hint="@string/getCode"
             android:onClick="f_getcode"
-
-
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:background="@color/colorPrimary"
             />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
 
         <EditText
             android:id="@+id/inputCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:hint="@string/hintCodeInfor"
-            android:inputType="number"/>
-    </LinearLayout>
+            android:gravity="left"
+            android:hint="请输入收到的短信验证码"
+            android:layout_marginLeft="20dp"
+            android:inputType="number"
+            android:layout_toLeftOf="@id/getBtn"/>
+    </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+
 
         <Button
             android:id="@+id/submit"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="@string/submit"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:background="@color/colorPrimary"
             android:onClick="f_submit"/>
 
 
-    </LinearLayout>
+
 
 
 </LinearLayout>

@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="40dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
     android:orientation="vertical"
 
     tools:context="activity.MainActivity">
-
-    <LinearLayout
+    <include
+        android:id="@+id/ll_include"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
+        android:layout_height="50dp"
+        layout="@layout/top_back"
+        >
+
+    </include>
+
+
         <LinearLayout
             android:id="@+id/line1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp">
+
+
             <EditText
                 android:id="@+id/username"
-                android:layout_width="match_parent"
+               android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
+
+                android:textSize="20sp"
+                android:gravity="left"
                 android:hint="@string/hintName"
                 android:digits="0123456789abcdefghijklmnopqrstuvwxyz"
                 android:maxLength="10"
@@ -38,14 +43,15 @@
             android:id="@+id/line2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
             android:orientation="vertical">
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
+
+                android:gravity="left"
                 android:hint="@string/hintPas"
                 android:inputType="textPassword"
                 android:maxLength="10"
@@ -55,7 +61,7 @@
             android:id="@+id/line3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             >
 
@@ -64,16 +70,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="on_login"
-                android:text="@string/login" />
+                android:text="@string/login"
+                android:background="@color/colorPrimary"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+               />
 
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+
 
             >
 
@@ -81,11 +91,10 @@
                 android:id="@+id/register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:onClick="on_register"
                 android:text="@string/register"
-
-
+                android:textSize="20sp"
                 android:textColor="#0066cc"
                 tools:ignore="RtlHardcoded" />
 
@@ -93,18 +102,18 @@
                 android:id="@+id/reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="200dp"
-                android:layout_marginLeft="200dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
                 android:onClick="on_forget"
-                android:text="@string/forget"
+                android:text="忘记密码"
                 android:textColor="#0066cc"
+                android:textSize="20sp"
                 />
 
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </LinearLayout>
 
 
-</RelativeLayout>

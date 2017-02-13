@@ -49,7 +49,12 @@ public class RegisterActivity extends AppCompatActivity {
         r_text= (TextView) v.findViewById(R.id.mian_context);
         r_text.setText("注册界面");
         r_back=(ImageView) v.findViewById(R.id.login_img);
-        r_back.setVisibility(View.INVISIBLE);
+        r_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 

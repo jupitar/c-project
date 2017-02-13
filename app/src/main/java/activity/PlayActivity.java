@@ -66,7 +66,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
     private Uri uri;
     private ProgressBar pb;
     private TextView downloadRateView, loadRateView, current_time, total_time,comment_none;
-    ImageView back_img,pause_img,scren_img,add_comment_img,reset_img;
+    ImageView pause_img,scren_img,add_comment_img,reset_img;
     private MediaController mMediaController;
     private CustomMediaController mCustomMediaController;
     private  VideoView mVideoView;
@@ -78,6 +78,10 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
     private View  videoview_layout,control_layout1,temp_video,temp_finish;
     private  View control_layout;
     View v,v1;
+    View topView;
+
+    ImageView img_back;
+    TextView play_textView;
 
     private ListView comment_list;
     FrameLayout list_frameLayout;
@@ -86,6 +90,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
    List<String> str=new ArrayList<String>();
      List<CommentsBean> commentsBeanList=new ArrayList<CommentsBean>();
    MyAdapter myAdapter=null;
+    private String userName;
     private int RequestCode=0;
 
 
@@ -151,6 +156,10 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
 
     //初始化控件
     private void initView() {
+        topView=findViewById(R.id.play_include);
+        img_back= (ImageView) topView.findViewById(R.id.login_img);
+        play_textView=(TextView) topView.findViewById(R.id.mian_context);
+        play_textView.setText("");
         LayoutInflater inflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         list_frameLayout=(FrameLayout) findViewById(R.id.comment_frame);
         v=inflater.inflate(R.layout.comment_list, null);
@@ -165,7 +174,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
         temp_finish=inflater.inflate(R.layout.temp_finish, null);
         reset_img=(ImageView)temp_finish.findViewById(R.id.reset_img);
         frameLayout.addView(temp_video);
-        back_img = (ImageView) findViewById(R.id.back_img);
+       // back_img = (ImageView) findViewById(back_img);
         pause_img=(ImageView) temp_video.findViewById(R.id.movie_pause);
         add_comment_img=(ImageView) findViewById(R.id.add_comment);
         scren_img=(ImageView) temp_video.findViewById(R.id.screen_control);
@@ -177,6 +186,8 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
         total_time = (TextView) temp_video.findViewById(R.id.total_time);
         mMediaController = new MediaController(this);
         movieInfor = (MovieInfor) getIntent().getSerializableExtra("movieInfor");
+        userName=getIntent().getStringExtra("userName");
+        movieInfor.setUser_id(userName);
         if (movieInfor != null) {
             url = Movie_URL + movieInfor.getPage() + "/" + movieInfor.getUrl();
             //获取视频评论列表
@@ -213,7 +224,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
         });
         mVideoView.setOnCompletionListener(this);
         //关闭当前播放页面
-        back_img.setOnClickListener(new View.OnClickListener() {
+        img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendData();
@@ -279,6 +290,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(PlayActivity.this,AddCommentActivity.class);
+               // movieInfor.setUser_id(userName);
                 intent.putExtra("movieInfor",movieInfor);
                 intent.putExtra("currentTime",mVideoView.getCurrentPosition());
                 //mVideoView.pause();
@@ -342,7 +354,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
         // 将观影记录插入数据库
         if(mVideoView.getCurrentPosition()>0){
             movieInfor.setHasFinished(updateUI(null,mVideoView.getCurrentPosition()));
-            movieInfor.setUser_id("wp1");
+
             if(mVideoView.getCurrentPosition()==mVideoView.getDuration()){
                 movieInfor.setIsFinished(1);
             }else{
@@ -470,6 +482,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
                 break;
             case MediaPlayer.MEDIA_INFO_DOWNLOAD_RATE_CHANGED:
                 downloadRateView.setText("" + extra + "kb/s" + "  ");
+                pb.setVisibility(View.GONE);
                 break;
         }
         return true;

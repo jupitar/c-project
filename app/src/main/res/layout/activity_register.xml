@@ -5,31 +5,32 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
-
     android:orientation="vertical"
     tools:context="activity.MainActivity">
+
     <include
-        android:id="@+id/includes"
+        android:id="@+id/register_include"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         layout="@layout/top_back"
-        ></include>
+        >
+
+    </include>
 
 
     <LinearLayout
         android:id="@+id/line11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp">
 
         <EditText
             android:id="@+id/_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
+            android:gravity="left"
             android:hint="@string/hintName"
             android:digits="0123456789abcdefghigklmnopqrstuvwxyz"
             android:maxLength="10"
@@ -42,7 +43,8 @@
         android:id="@+id/line22"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
         android:orientation="vertical">
 
 
@@ -50,8 +52,7 @@
             android:id="@+id/_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
+            android:gravity="left"
             android:hint="@string/hintPas"
             android:inputType="textPassword"
             android:maxLength="10"
@@ -62,16 +63,19 @@
         android:id="@+id/line33"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp">
 
         <EditText
             android:id="@+id/tel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
+
+            android:gravity="left"
             android:hint="@string/hintTel"
             android:inputType="number"
+            android:maxLength="11"
 
             android:maxLines="1" />
 
@@ -90,14 +94,14 @@
 
 
         <Button
-
             android:id="@+id/register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="on_register"
-
-
-            android:text="@string/register" />
+            android:textColor="#ffffff"
+            android:background="@color/colorPrimary"
+            android:text="@string/register"
+            android:textSize="20sp"/>
 
 
     </LinearLayout>

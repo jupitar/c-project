@@ -43,8 +43,6 @@
         android:layout_alignParentBottom="true"
         android:background="#4c4c4c">
 
-
-
     <RelativeLayout
         android:id="@+id/control_layout"
         android:background="#4c4c4c"
