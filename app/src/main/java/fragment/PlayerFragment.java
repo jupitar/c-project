@@ -52,7 +52,7 @@ public class PlayerFragment extends Fragment implements MyItemClickListener {
 
     List<MovieInfor> mDatas;
     Spinner spinner;
-    TextView textView, movie_infor, cancle_movie;
+    TextView textView;
     RecyclerView mRecyclerView;
     ImageView img;
     View ll_show;
@@ -94,7 +94,7 @@ public class PlayerFragment extends Fragment implements MyItemClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragment_v = inflater.inflate(R.layout.play_fragment, container, false);
         init(fragment_v);
-        set();
+       set();
         return fragment_v;
     }
 
@@ -105,10 +105,10 @@ public class PlayerFragment extends Fragment implements MyItemClickListener {
 
 
         mDatas = new ArrayList<MovieInfor>();
-        ll_show = v.findViewById(R.id.ll_show);
+        //ll_show = v.findViewById(R.id.ll_show);
         textView = (TextView) v.findViewById(R.id.changeOther);
-        movie_infor = (TextView) v.findViewById(R.id.movie_infor);
-        cancle_movie = (TextView) v.findViewById(R.id.cancel);
+       // movie_infor = (TextView) v.findViewById(R.id.movie_infor);
+       // cancle_movie = (TextView) v.findViewById(R.id.cancel);
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.list);
         spinner = (Spinner) v.findViewById(R.id.character);
@@ -167,22 +167,7 @@ public class PlayerFragment extends Fragment implements MyItemClickListener {
     }
 
     private void set() {//各种信息设置
-        movie_infor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "继续播放!", Toast.LENGTH_LONG).show();
 
-
-            }
-        });
-        cancle_movie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "取消播放!", Toast.LENGTH_LONG).show();
-
-
-            }
-        });
         //换一批的点击事件
         textView.setOnClickListener(new View.OnClickListener() {
             @Override

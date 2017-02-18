@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="activity.MainActivity"
+    android:background="#7549DA92">
+
+    <RelativeLayout
+        android:id="@+id/llll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+        <include
+            android:id="@+id/set_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            layout="@layout/top_back"
+            >
+
+        </include>
+        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llll"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        >
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+
+            android:orientation="horizontal"
+            >
+            <RadioButton
+                android:id="@+id/advice_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="内容意见"
+                android:layout_marginRight="20dp"
+                android:checked="true"
+                android:textColor="#4c4c4c"
+                />
+
+            <RadioButton
+                android:id="@+id/advice_tec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="技术问题"
+                android:textColor="#4c4c4c"
+                />
+
+            <RadioButton
+                android:id="@+id/advice_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="其他问题"
+                android:textColor="#4c4c4c"
+                />
+
+        </RadioGroup>
+        <EditText
+            android:id="@+id/reback_advice"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/radioGroup"
+            android:layout_marginTop="30dp"
+            android:hint="请填写具体内容帮助我们们了解您的意见与建议"
+            android:gravity="left"
+            android:textColor="#4c4c4c"
+           />
+
+
+    </RelativeLayout>
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_marginBottom="30dp">
+        <EditText
+            android:id="@+id/leave_mes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="请留下QQ,邮箱或者手机号，方便答疑解惑"
+           />
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/leave_mes"
+            android:layout_marginTop="20dp"
+
+            android:text="提交"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+          />
+
+    </RelativeLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+

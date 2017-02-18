@@ -7,14 +7,11 @@ import java.net.InetAddress;
  */
 
 public class URLUtils {
-
-
-
     public static String LOCAL_URL="http://10.0.2.2:8080/";
     //视频URL
-    public static  String Movie_URL="http://192.168.1.106:8080/project/movie/";
+    public static  String Movie_URL="http://192.168.1.102:8080/project/movie/";
     //网络url
-    public static  String BASIC_URL="http://192.168.1.106:8080/";
+    public static  String BASIC_URL="http://192.168.1.102:8080/";
     //登录servlet
     public static String LOGIN_SERVLET=BASIC_URL+"schoolproject/servlet/LoginServlet";
     //注册servlet
@@ -29,7 +26,16 @@ public class URLUtils {
     public static String COMMENT_SERVLET=BASIC_URL+"schoolproject/servlet/CommentServlet";
     //更新视频信息
     public static String UPDATE_MOVIE_SERVLET=BASIC_URL+"schoolproject/servlet/UpdateMovieServlet";
-//获取本机IP地址
+   //获取总试题数目，已经做的试题数目，正确率
+    public static String UBASIC_EXAMSERVLET=BASIC_URL+"schoolproject/servlet/ExamServlet";
+    //获取批量试题练习
+    public static String GET_EXAMSERVLET=BASIC_URL+"schoolproject/servlet/GetExamServlet";
+    //错题信息查看
+    public static String ERROR_EXAMSERVLET=BASIC_URL+"schoolproject/servlet/ErrorExamServlet";
+    //插入数据
+    public static String INSERT_EXAMSERVLET=BASIC_URL+"schoolproject/servlet/InsertExamServlet";
+
+    //获取本机IP地址
     public static  void  getUrl(){
         InetAddress ia=null;
         String localip=null;

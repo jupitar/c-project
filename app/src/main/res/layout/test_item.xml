@@ -5,7 +5,8 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
 
     android:orientation="vertical"
     tools:context="activity.MainActivity">
@@ -33,6 +34,7 @@
             android:layout_marginTop="20dp"
             android:paddingLeft="20dp"
             android:text="A.选择题"
+            android:enabled="false"
 
 
             />
@@ -45,7 +47,7 @@
             android:text="B.选择题"
             android:layout_marginTop="20dp"
             android:paddingLeft="20dp"
-
+            android:enabled="false"
             />
 
         <RadioButton
@@ -55,7 +57,7 @@
             android:text="C.选择题"
             android:layout_marginTop="20dp"
             android:paddingLeft="20dp"
-
+            android:enabled="false"
             />
         <RadioButton
             android:id="@+id/choiceD"
@@ -65,8 +67,25 @@
             android:paddingLeft="20dp"
             android:text="D.选择题"
 
+
             />
     </RadioGroup>
+    <RelativeLayout
+        android:id="@+id/comment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible">
+        <TextView
+            android:id="@+id/analize"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="分析题干，易得答案为C"
+
+            android:gravity="left" />
+
+    </RelativeLayout>
 
 
 
