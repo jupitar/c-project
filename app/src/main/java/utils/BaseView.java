@@ -60,6 +60,17 @@ public class BaseView {
         title= (TextView) view.findViewById(R.id.title);
 
         radioGroup= (RadioGroup) view.findViewById(R.id.choicegroup);
+        if(isCommentVisible){
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    radioButton = (RadioButton) view.findViewById(radioGroup.getCheckedRadioButtonId());
+                      String u_choice=radioButton.getText().toString();
+                    testBean.setU_choice(u_choice.substring(0,1));
+                }
+            });
+
+        }
         comment_layout=(RelativeLayout)view.findViewById(R.id.comment_layout);
         commentContents=(TextView)view.findViewById(R.id.analize);
         if(isCommentVisible){
@@ -84,8 +95,6 @@ public class BaseView {
         map.put("B",1);
         map.put("C",2);
         map.put("D",3);
-
-
         RadioButton radioButton= (RadioButton) radioGroup.getChildAt(0);
         radioButton.setText(testBean.getChoiceA());
         radioButton= (RadioButton) radioGroup.getChildAt(1);
@@ -94,18 +103,19 @@ public class BaseView {
         radioButton.setText(testBean.getChoiceC());
         radioButton= (RadioButton) radioGroup.getChildAt(3);
         radioButton.setText(testBean.getChoiceD());
-        if(testBean.getIsTrue()==0){
-            int j=map.get(testBean.getU_choice());
-            radioButton= (RadioButton) radioGroup.getChildAt(j);
-            radioButton.setBackgroundColor(Color.RED);
-            int k=map.get(testBean.getC_right());
-            radioButton= (RadioButton) radioGroup.getChildAt(k);
-            radioButton.setBackgroundColor(Color.GREEN);
-        }else{
-           int  j=map.get(testBean.getC_right());
-            radioButton= (RadioButton) radioGroup.getChildAt(j);
-            radioButton.setBackgroundColor(Color.GREEN);
-
+        if(isCommentVisible){//只有在查看错题时，试题才会有相关的颜色
+            if(testBean.getIsTrue()==0){
+                int j=map.get(testBean.getU_choice());
+                radioButton= (RadioButton) radioGroup.getChildAt(j);
+                radioButton.setBackgroundColor(Color.RED);
+                int k=map.get(testBean.getC_right());
+                radioButton= (RadioButton) radioGroup.getChildAt(k);
+                radioButton.setBackgroundColor(Color.GREEN);
+            }else{
+                int  j=map.get(testBean.getC_right());
+                radioButton= (RadioButton) radioGroup.getChildAt(j);
+                radioButton.setBackgroundColor(Color.GREEN);
+            }
         }
 
 

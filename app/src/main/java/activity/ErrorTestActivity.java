@@ -42,39 +42,41 @@ import static utils.URLUtils.ERROR_EXAMSERVLET;
  */
 public class ErrorTestActivity extends AppCompatActivity {
     ViewPager viewPager;
-    Button lastPage,nextPage;
+    Button lastPage, nextPage;
     ImageView back_img;
     TextView content;
-  MyPagerAdapter myAdapter;
-    List<TestBean> testBeans=new ArrayList<TestBean>();
+    MyPagerAdapter myAdapter;
+    List<TestBean> testBeans = new ArrayList<TestBean>();
 
     Handler handler;
     String userName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_activity);
         init();
-        //userName= getIntent().getStringExtra("userName");
-        handler=new Handler(){
+        handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                testBeans=  (List<TestBean>)(msg.obj);
+                testBeans = (List<TestBean>) (msg.obj);
 
                 myAdapter.setDatas(testBeans);
-
 
 
             }
         };
 
     }
+
     private void init() {
-        viewPager= (ViewPager) findViewById(R.id.vPager);
-        back_img=(ImageView) findViewById(R.id.login_img);
-        content= (TextView) findViewById(R.id.mian_context);
+
+
+        viewPager = (ViewPager) findViewById(R.id.vPager);
+        back_img = (ImageView) findViewById(R.id.login_img);
+        content = (TextView) findViewById(R.id.mian_context);
         content.setText("错题查看界面");
-        myAdapter=new MyPagerAdapter(this);
+        myAdapter = new MyPagerAdapter(this);
         viewPager.setAdapter(myAdapter);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -92,15 +94,16 @@ public class ErrorTestActivity extends AppCompatActivity {
 
             }
         });
-        lastPage=(Button)findViewById(R.id.lastPage);
-        nextPage=(Button)findViewById(R.id.nextPage);
+        lastPage = (Button) findViewById(R.id.lastPage);
+        nextPage = (Button) findViewById(R.id.nextPage);
         setClick();
         //获取数据
         getData();
     }
 
-    public void getData(){
-        postConnection( );
+    public void getData() {
+        userName = getIntent().getStringExtra("userName");
+        postConnection();
     }
 
     private void setClick() {
@@ -130,13 +133,13 @@ public class ErrorTestActivity extends AppCompatActivity {
         lastPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int i=viewPager.getCurrentItem();
-                if(i>0){
+                int i = viewPager.getCurrentItem();
+                if (i > 0) {
                     i--;
                     viewPager.setCurrentItem(i);
 
-                }else{
-                    Toast.makeText(ErrorTestActivity.this,"当前已经是第一题了!",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ErrorTestActivity.this, "当前已经是第一题了!", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -144,13 +147,13 @@ public class ErrorTestActivity extends AppCompatActivity {
         nextPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int i=viewPager.getCurrentItem();
-                if(i<testBeans.size()-1){
+                int i = viewPager.getCurrentItem();
+                if (i < testBeans.size() - 1) {
                     i++;
                     viewPager.setCurrentItem(i);
 
-                }else{
-                    Toast.makeText(ErrorTestActivity.this,"当前已经是最后一题了!",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ErrorTestActivity.this, "当前已经是最后一题了!", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -159,10 +162,27 @@ public class ErrorTestActivity extends AppCompatActivity {
 
     }
 
-    public  void postConnection() {//post提交数据请求
-        userName="wp2";
+    //弹出对话框
+    public void openDialog() {
+        new AlertDialog.Builder(ErrorTestActivity.this).setTitle("系统提示").setMessage("您确定退出当前错题查看吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+
+            }
+        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).show();
+
+    }
+
+    public void postConnection() {//post提交数据请求
+        userName = "wp2";
         OkHttpClient mOkHttpClient = new OkHttpClient();
-        RequestBody requestBodyPost = new FormBody.Builder().add("userName",userName).build();
+        RequestBody requestBodyPost = new FormBody.Builder().add("userName", userName).build();
         Request requestPost = new Request.Builder().url(ERROR_EXAMSERVLET).post(requestBodyPost).build();
         mOkHttpClient.newCall(requestPost).enqueue(new Callback() {
             @Override
@@ -173,11 +193,12 @@ public class ErrorTestActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String result = response.body().string();
-                Gson gson=new Gson();
+                Gson gson = new Gson();
 
-                testBeans =  gson.fromJson(result, new TypeToken<List<TestBean>>(){}.getType());
-                Message msg=new Message();
-                msg.obj=testBeans;
+                testBeans = gson.fromJson(result, new TypeToken<List<TestBean>>() {
+                }.getType());
+                Message msg = new Message();
+                msg.obj = testBeans;
                 handler.sendMessage(msg);
 
 
@@ -189,11 +210,12 @@ public class ErrorTestActivity extends AppCompatActivity {
 
     class MyPagerAdapter extends PagerAdapter {
         Context context;
-        List<BaseView> baseViews=new ArrayList<BaseView>();
+        List<BaseView> baseViews = new ArrayList<BaseView>();
 
-        public MyPagerAdapter(Context context){
-            this.context=context;
+        public MyPagerAdapter(Context context) {
+            this.context = context;
         }
+
         @Override
         public int getCount() {
             return baseViews.size();
@@ -201,16 +223,14 @@ public class ErrorTestActivity extends AppCompatActivity {
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view==object;
+            return view == object;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            //
 
 
             container.addView(baseViews.get(position).getView());
-
             return baseViews.get(position).getView();
 
 
@@ -220,11 +240,11 @@ public class ErrorTestActivity extends AppCompatActivity {
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView(baseViews.get(position).getView());
         }
-        public void setDatas(List<TestBean> testBeens){
-            BaseView baseView;
 
-            for(int i=0;i<testBeens.size();i++){
-                baseView=new BaseView(context,testBeens.get(i),true);
+        public void setDatas(List<TestBean> testBeens) {
+            BaseView baseView;
+            for (int i = 0; i < testBeens.size(); i++) {
+                baseView = new BaseView(context, testBeens.get(i), true);
                 baseViews.add(baseView);
             }
             myAdapter.notifyDataSetChanged();
@@ -232,21 +252,18 @@ public class ErrorTestActivity extends AppCompatActivity {
         }
 
 
-
     }
 
     //重写返回键，关闭当前Activity
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==event.KEYCODE_BACK){
-            finish();
+        if (keyCode == event.KEYCODE_BACK) {
+            openDialog();
 
         }
 
         return true;
     }
-
-
 
 
 }

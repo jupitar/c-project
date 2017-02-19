@@ -4,11 +4,13 @@ package bean;
  * Created by Administrator on 2017/2/13.
  */
 
+import java.io.Serializable;
+
 /**
  * 试题实体类
  */
 
-public class TestBean {
+public class TestBean implements Serializable{
 
     private int id;
     private String user_id;

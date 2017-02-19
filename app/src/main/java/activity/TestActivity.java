@@ -2,6 +2,7 @@ package activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,7 +14,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,13 +45,16 @@ import static utils.URLUtils.ERROR_EXAMSERVLET;
  */
 public class TestActivity extends AppCompatActivity {
     ViewPager viewPager;
-    Button lastPage, nextPage;
+    Button lastPage, nextPage,submit;
     ImageView back_img;
     TextView content;
     MyPagerAdapter myAdapter;
     List<TestBean> testBeans = new ArrayList<TestBean>();
     Handler handler;
     String userName;
+    FrameLayout fm;
+    RelativeLayout relativeLayout;
+    View v;
 
 
     @Override
@@ -70,7 +76,10 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void init() {
-
+        fm= (FrameLayout) findViewById(R.id.fm);
+        relativeLayout= (RelativeLayout) findViewById(R.id.change_page);
+        v=View.inflate(this,R.layout.submit,null);
+        submit= (Button) viewPager.findViewById(R.id.submit);
         viewPager = (ViewPager) findViewById(R.id.vPager);
       back_img=(ImageView) findViewById(R.id.login_img);
         content= (TextView) findViewById(R.id.mian_context);
@@ -99,18 +108,7 @@ public class TestActivity extends AppCompatActivity {
         back_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(TestActivity.this).setTitle("系统提示").setMessage("您确定退出当前测试吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-
-                    }
-                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                }).show();
+                openDialog();
 
 
             }
@@ -151,10 +149,73 @@ public class TestActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(TestActivity.this, "当前已经是最后一题了!", Toast.LENGTH_SHORT).show();
                 }
+                if(i==testBeans.size()-1){
+                    //将底部布局换成提交按钮
+                    Button button=new Button(TestActivity.this);
+                    button.setText("提交");
+
+                }
+
+            }
+        });
+        //提交试题
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //判断用户试题是否做完
+               boolean  flag=isFinished();
+                if(!flag){
+                    new AlertDialog.Builder(TestActivity.this).setTitle("系统提示").setMessage("您还有试题未完成，你确定提交吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                            Intent intent=new Intent(TestActivity.this,SubmitActivity.class);
+                           //intent.putExtra("testBean",testBeans);
+                            startActivity(intent);
+
+                        }
+                    }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).show();
+
+                }
+
 
             }
         });
 
+
+    }
+
+    private boolean isFinished() {
+        boolean flag=false;
+        for(TestBean testBean:testBeans) {
+            if (testBean.getU_choice() == null)
+                return flag;
+        }
+        flag=true;
+        return flag;
+
+
+    }
+
+    //弹出对话框
+    public void openDialog(){
+        new AlertDialog.Builder(TestActivity.this).setTitle("系统提示").setMessage("您确定退出当前测试吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+
+            }
+        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).show();
 
     }
 
@@ -244,7 +305,7 @@ public class TestActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == event.KEYCODE_BACK) {
-            finish();
+            openDialog();
 
         }
 
