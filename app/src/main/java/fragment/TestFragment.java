@@ -21,8 +21,6 @@ import activity.ErrorTestActivity;
 import activity.MainActivity;
 import activity.R;
 import activity.TestActivity;
-import base.DBManager;
-import bean.TestBean;
 import bean.TestSummary;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -45,7 +43,7 @@ public class TestFragment extends Fragment {
     TextView total_number,finished_number,right_percent;
     Button modern_test,look_error,insert_data;
     String userName="";
-    DBManager dbManager;
+
     MainActivity activity;
 
     public TestFragment(){
@@ -56,25 +54,16 @@ public class TestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       View v=  LayoutInflater.from(getActivity()).inflate(R.layout.test_fragment, null, false);
 
-        //获取数据总记录数目
-       // getCount();
         init(v);
 
         return v;
     }
 
-    private int getCount() {
-        dbManager=new DBManager(getActivity());
-        return dbManager.getCount();
-       //return  dbManager.getOffsetCount(0,5,0);
 
-    }
 
     private void init(View v) {
         userName=((MainActivity)getActivity()).getName();
         total_number=(TextView) v.findViewById(R.id.total_number);
-      //  total_number.setText("试题总数目为:"+getCount());
-
         finished_number=(TextView) v.findViewById(R.id.finish_number);
         right_percent=(TextView) v.findViewById(R.id.right_percent);
 
@@ -137,9 +126,9 @@ public class TestFragment extends Fragment {
 
     public  void postConnection(String url,String userName) {//post提交数据请求
         OkHttpClient mOkHttpClient = new OkHttpClient();
-        TestBean testBeans=new TestBean(30,"wp2","哈哈哈哈哈哈!","B哈哈哈哈哈哈!","B",1,"10:45");
 
-        RequestBody requestBodyPost = new FormBody.Builder().add("userName", userName).add("testBeans",new Gson().toJson(testBeans)).build();
+
+        RequestBody requestBodyPost = new FormBody.Builder().add("userName", userName).build();
         Request requestPost = new Request.Builder().url(url).post(requestBodyPost).build();
         mOkHttpClient.newCall(requestPost).enqueue(new Callback() {
             @Override

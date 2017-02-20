@@ -4,9 +4,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -25,9 +25,9 @@ public class BaseView {
     private View view;
     private TestBean testBean;
     Context context ;
-    TextView title,commentContents;
+    TextView title,commentContents,test_right,test_your;
     RadioGroup radioGroup;
-    RelativeLayout comment_layout;
+    LinearLayout comment_layout;
     RadioButton radioButton;
     public BaseView(){
 
@@ -60,20 +60,27 @@ public class BaseView {
         title= (TextView) view.findViewById(R.id.title);
 
         radioGroup= (RadioGroup) view.findViewById(R.id.choicegroup);
-        if(isCommentVisible){
+        if(!isCommentVisible){
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     radioButton = (RadioButton) view.findViewById(radioGroup.getCheckedRadioButtonId());
                       String u_choice=radioButton.getText().toString();
                     testBean.setU_choice(u_choice.substring(0,1));
+                    if(u_choice.substring(0,1).equals(testBean.getC_right()))
+                        testBean.setIsTrue(1);
+                    else
+                        testBean.setIsTrue(0);
                 }
             });
 
         }
-        comment_layout=(RelativeLayout)view.findViewById(R.id.comment_layout);
-        commentContents=(TextView)view.findViewById(R.id.analize);
+
         if(isCommentVisible){
+            comment_layout=(LinearLayout)view.findViewById(R.id.comment_layout);
+            commentContents=(TextView)view.findViewById(R.id.analize);
+            test_right=(TextView)view.findViewById(R.id.test_right);
+            test_your=(TextView)view.findViewById(R.id.test_your);
             comment_layout.setVisibility(View.VISIBLE);
             disableRadioGroup(radioGroup);
 
@@ -86,7 +93,7 @@ public class BaseView {
 
 
     public void initData(boolean isCommentVisible){
-        title.setText(testBean.getTitle());
+        title.setText("(单选题)"+" "+testBean.getTitle());
         if(isCommentVisible){
             commentContents.setText(testBean.getComments());
         }
@@ -105,17 +112,26 @@ public class BaseView {
         radioButton.setText(testBean.getChoiceD());
         if(isCommentVisible){//只有在查看错题时，试题才会有相关的颜色
             if(testBean.getIsTrue()==0){
-                int j=map.get(testBean.getU_choice());
-                radioButton= (RadioButton) radioGroup.getChildAt(j);
-                radioButton.setBackgroundColor(Color.RED);
+                if(testBean.getU_choice()!=null){
+                    int j=map.get(testBean.getU_choice());
+                    test_your.setText(testBean.getU_choice());
+                    radioButton= (RadioButton) radioGroup.getChildAt(j);
+                    radioButton.setBackgroundColor(Color.RED);
+                }else{
+                    test_your.setText("（错误）");
+                }
                 int k=map.get(testBean.getC_right());
+
                 radioButton= (RadioButton) radioGroup.getChildAt(k);
                 radioButton.setBackgroundColor(Color.GREEN);
             }else{
                 int  j=map.get(testBean.getC_right());
                 radioButton= (RadioButton) radioGroup.getChildAt(j);
                 radioButton.setBackgroundColor(Color.GREEN);
+                test_your.setText(testBean.getU_choice());
+                test_your.setTextColor(Color.GREEN);
             }
+            test_right.setText(testBean.getC_right());
         }
 
 

@@ -10,10 +10,18 @@ import bean.TestBean;
 
 /**
  * Created by Administrator on 2017/2/19.
+ * 使用Application，主要是重写onCreate()方法
+ *
  */
 
 public class MyApplication extends Application {
-    public Map<String,List<TestBean>> datas=new HashMap<String,List<TestBean>>();
-    //传递用户选择试题信息
 
+    public Map<String,List<TestBean>> datas=null;
+
+
+    @Override
+    public void onCreate() {
+        datas=new HashMap<String,List<TestBean>>();
+        super.onCreate();
+    }
 }

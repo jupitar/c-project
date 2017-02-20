@@ -12,7 +12,7 @@
         android:id="@+id/test_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="提交"
+        android:text="提交并查看结果"
         android:textSize="15sp"
         android:textColor="#FF16F40A"
         />

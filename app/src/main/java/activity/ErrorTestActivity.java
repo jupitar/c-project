@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,18 +51,37 @@ public class ErrorTestActivity extends AppCompatActivity {
 
     Handler handler;
     String userName;
+    FrameLayout fm;
+
+    View bottom_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_activity);
         init();
+
+
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                testBeans = (List<TestBean>) (msg.obj);
+                if(msg.what==1){
+                    testBeans = (List<TestBean>) (msg.obj);
+                    myAdapter.setDatas(testBeans);
 
-                myAdapter.setDatas(testBeans);
+                }
+                if(msg.what==0){
+                    new AlertDialog.Builder(ErrorTestActivity.this).setTitle("系统提示").setMessage("亲，你还没有任何错题，去试题练习里测试下吧!").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+
+
+                        }
+                    }).show();
+
+                }
+
 
 
             }
@@ -70,6 +90,13 @@ public class ErrorTestActivity extends AppCompatActivity {
     }
 
     private void init() {
+        fm= (FrameLayout) findViewById(R.id.fm);
+
+
+        bottom_button=View.inflate(this,R.layout.bottom_button,null);
+        lastPage = (Button) bottom_button.findViewById(R.id.lastPage);
+        nextPage = (Button) bottom_button.findViewById(R.id.nextPage);
+        fm.addView(bottom_button);
 
 
         viewPager = (ViewPager) findViewById(R.id.vPager);
@@ -94,8 +121,7 @@ public class ErrorTestActivity extends AppCompatActivity {
 
             }
         });
-        lastPage = (Button) findViewById(R.id.lastPage);
-        nextPage = (Button) findViewById(R.id.nextPage);
+
         setClick();
         //获取数据
         getData();
@@ -193,11 +219,20 @@ public class ErrorTestActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String result = response.body().string();
+                Message msg = new Message();
+                if(result.equals("[]")){
+
+                    handler.sendEmptyMessage(0);
+                    return ;
+
+
+                }
                 Gson gson = new Gson();
 
                 testBeans = gson.fromJson(result, new TypeToken<List<TestBean>>() {
                 }.getType());
-                Message msg = new Message();
+                msg.what=1;
+
                 msg.obj = testBeans;
                 handler.sendMessage(msg);
 

@@ -70,22 +70,72 @@
 
             />
     </RadioGroup>
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/comment_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="20dp"
-        android:visibility="invisible">
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+
+       >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/judeg_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="正确答案为："/>
+            <TextView
+                android:id="@+id/test_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="A"
+                android:textColor="#FF3ED21C"
+                />
+            <TextView
+                android:id="@+id/test_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="你的答案为："
+                 />
+
+            <TextView
+                android:id="@+id/test_your"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B"
+                android:layout_marginLeft="10dp"
+                android:textColor="#d13b12"
+                />
+
+
+
+        </LinearLayout>
+
+
+
+
         <TextView
             android:id="@+id/analize"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
             android:text="分析题干，易得答案为C"
 
             android:gravity="left" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 
