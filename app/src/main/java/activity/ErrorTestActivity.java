@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,7 @@ public class ErrorTestActivity extends AppCompatActivity {
     FrameLayout fm;
 
     View bottom_button;
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class ErrorTestActivity extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 if(msg.what==1){
+                    linearLayout.setVisibility(View.VISIBLE);
                     testBeans = (List<TestBean>) (msg.obj);
                     myAdapter.setDatas(testBeans);
 
@@ -75,7 +78,8 @@ public class ErrorTestActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             finish();
-
+                            //关闭当前activity
+                            close();
 
                         }
                     }).show();
@@ -90,6 +94,7 @@ public class ErrorTestActivity extends AppCompatActivity {
     }
 
     private void init() {
+        linearLayout= (LinearLayout) findViewById(R.id.test_activity);
         fm= (FrameLayout) findViewById(R.id.fm);
 
 
@@ -130,6 +135,10 @@ public class ErrorTestActivity extends AppCompatActivity {
     public void getData() {
         userName = getIntent().getStringExtra("userName");
         postConnection();
+    }
+
+    public void close(){
+        finish();
     }
 
     private void setClick() {

@@ -25,7 +25,20 @@
         android:textColor="#ffffff"
         android:gravity="center"
         android:textSize="20sp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        />
+   <ImageView
+       android:id="@+id/test_refresh"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:src="@mipmap/test_refresh"
+       android:layout_marginTop="5dp"
+       android:layout_centerVertical="true"
+       android:layout_alignParentRight="true"
+       android:layout_marginRight="20dp"
+       android:visibility="invisible"
+
+     />
 
 
 </RelativeLayout>

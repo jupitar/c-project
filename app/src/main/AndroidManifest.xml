@@ -20,6 +20,7 @@
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name="application.MyApplication"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity"
             android:launchMode="singleTop">
@@ -58,7 +59,10 @@
             android:screenOrientation="portrait"
             >
 
+
         </activity>
+        <!--提交试卷成功activity-->
+        <activity android:name=".SubmitActivity"/>
         <activity
             android:name="io.vov.vitamio.activity.InitActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"

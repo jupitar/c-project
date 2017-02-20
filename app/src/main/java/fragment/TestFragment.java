@@ -48,6 +48,7 @@ public class TestFragment extends Fragment {
 
     public TestFragment(){
 
+
     }
     @Nullable
     @Override
@@ -124,7 +125,7 @@ public class TestFragment extends Fragment {
     }
     //网络请求数据
 
-    public  void postConnection(String url,String userName) {//post提交数据请求
+    public   void postConnection(String url,String userName) {//post提交数据请求
         OkHttpClient mOkHttpClient = new OkHttpClient();
 
 

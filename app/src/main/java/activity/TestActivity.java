@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -17,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +57,8 @@ public class TestActivity extends AppCompatActivity {
     Handler handler;
     String userName;
     FrameLayout fm;
+    LinearLayout linearLayout;
+
 
     View submit_v,bottom_button;
     boolean isLast=true;
@@ -85,6 +87,8 @@ public class TestActivity extends AppCompatActivity {
         userName= getIntent().getStringExtra("userName");
         //获得我们的应用程序MyApplication
         app= (MyApplication) getApplication();
+        linearLayout= (LinearLayout) findViewById(R.id.test_activity);
+        linearLayout.setVisibility(View.VISIBLE);
 
         fm= (FrameLayout) findViewById(R.id.fm);
 
@@ -287,15 +291,7 @@ public class TestActivity extends AppCompatActivity {
                     handler.sendMessage(msg);
                 }
 
-                if(flag==1){
-                    String result = response.body().string();
 
-                    Looper.prepare();
-                    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                    Looper.loop();
-
-
-                }
 
 
 

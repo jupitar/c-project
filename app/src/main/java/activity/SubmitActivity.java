@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ public class SubmitActivity extends AppCompatActivity {
 
     Handler handler;
     String userName;
-
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +52,10 @@ public class SubmitActivity extends AppCompatActivity {
 
     }
 
-
     private void initVew() {
         fm= (FrameLayout) findViewById(R.id.fm);
-
-
+        linearLayout= (LinearLayout) findViewById(R.id.test_activity);
+        linearLayout.setVisibility(View.VISIBLE);
         bottom_button=View.inflate(this, R.layout.bottom_button,null);
         lastPage = (Button) bottom_button.findViewById(R.id.lastPage);
         nextPage = (Button) bottom_button.findViewById(R.id.nextPage);
@@ -65,7 +65,7 @@ public class SubmitActivity extends AppCompatActivity {
         testBeans=(List<TestBean>) app.datas.get("applicationBean");
         img= (ImageView) findViewById(R.id.login_img);
         content= (TextView) findViewById(R.id.mian_context);
-        content.setText("试题提交成功");
+        content.setText("试题信息显示");
         myAdapter = new MyPagerAdapter(this);
         myAdapter.setDatas(testBeans);
         viewPager.setAdapter(myAdapter);

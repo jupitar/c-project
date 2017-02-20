@@ -17,6 +17,7 @@ import fragment.PlayerFragment;
 import fragment.SettingFragment;
 import fragment.TestFragment;
 
+import static utils.URLUtils.UBASIC_EXAMSERVLET;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView play_img, test_img,settings_img;
     TextView play_text, test_text,settings_text;
     TextView r_text;
-    ImageView r_back;
+    ImageView r_back,top_refresh;
     View v;
     private String data = "12";
     private int count = 0;
@@ -70,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
         settings_text = (TextView) findViewById(R.id.settings_text);
         v=findViewById(R.id.topBar);
         r_text= (TextView) v.findViewById(R.id.mian_context);
+        top_refresh=(ImageView) v.findViewById(R.id.test_refresh);
+
+        top_refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                testFragment.postConnection(UBASIC_EXAMSERVLET, userName);
+            }
+        });
         r_text.setText("主界面");
         r_back=(ImageView) v.findViewById(R.id.login_img);
         r_back.setVisibility(View.INVISIBLE);
@@ -85,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
     public void mulclick(View v) {
         switch (v.getId()) {
             case R.id.ll_play:
+                r_text.setText("视频界面");
+                top_refresh.setVisibility(View.INVISIBLE);
                 fragmentTransaction = fragmentManager.beginTransaction();
                 if (playerFragment == null) {
                     playerFragment = new PlayerFragment();
@@ -96,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.ll_test:
                 r_text.setText("测试界面");
-
+                top_refresh.setVisibility(View.VISIBLE);
                 fragmentTransaction = fragmentManager.beginTransaction();
                 if (testFragment == null) {
                     testFragment = new TestFragment();
@@ -108,7 +119,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.ll_settings:
-                r_text.setText("我的界面");
+                r_text.setText("设置界面");
+                top_refresh.setVisibility(View.INVISIBLE);
                 fragmentTransaction = fragmentManager.beginTransaction();
                 if (settingFragment == null) {
                     settingFragment = new SettingFragment();
