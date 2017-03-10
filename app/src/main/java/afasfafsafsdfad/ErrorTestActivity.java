@@ -1,8 +1,7 @@
-package activity;
+package afasfafsafsdfad;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,7 +26,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.MyApplication;
 import bean.TestBean;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -38,31 +36,26 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import utils.BaseView;
 
-import static android.view.View.inflate;
-import static utils.URLUtils.GET_EXAMSERVLET;
-import static utils.URLUtils.INSERT_EXAMSERVLET;
+import static utils.URLUtils.ERROR_EXAMSERVLET;
 
 
 /**
  * 模块测试界面
  */
-public class TestActivity extends AppCompatActivity {
-    private MyApplication app;
+public class ErrorTestActivity extends AppCompatActivity {
     ViewPager viewPager;
-    Button lastPage, nextPage,submit;
+    Button lastPage, nextPage;
     ImageView back_img;
     TextView content;
     MyPagerAdapter myAdapter;
     List<TestBean> testBeans = new ArrayList<TestBean>();
+
     Handler handler;
     String userName;
     FrameLayout fm;
+
+    View bottom_button;
     LinearLayout linearLayout;
-
-
-    View submit_v,bottom_button;
-    boolean isLast=true;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,38 +63,51 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.test_activity);
         init();
 
+
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                testBeans = (List<TestBean>) (msg.obj);
-                myAdapter.setDatas(testBeans);
+                if(msg.what==1){
+                    linearLayout.setVisibility(View.VISIBLE);
+                    testBeans = (List<TestBean>) (msg.obj);
+                    myAdapter.setDatas(testBeans);
+
+                }
+                if(msg.what==0){
+                    new AlertDialog.Builder(ErrorTestActivity.this).setTitle("系统提示").setMessage("亲，你还没有任何错题，去试题练习里测试下吧!").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                            //关闭当前activity
+                            close();
+
+                        }
+                    }).show();
+
+                }
+
+
 
             }
         };
 
-
     }
 
     private void init() {
-        //获取用户用户名
-        userName= getIntent().getStringExtra("userName");
-        //获得我们的应用程序MyApplication
-        app= (MyApplication) getApplication();
         linearLayout= (LinearLayout) findViewById(R.id.test_activity);
-        linearLayout.setVisibility(View.VISIBLE);
-
         fm= (FrameLayout) findViewById(R.id.fm);
 
-        submit_v= inflate(this,R.layout.submit,null);
+
         bottom_button=View.inflate(this,R.layout.bottom_button,null);
         lastPage = (Button) bottom_button.findViewById(R.id.lastPage);
         nextPage = (Button) bottom_button.findViewById(R.id.nextPage);
         fm.addView(bottom_button);
-        submit= (Button) submit_v.findViewById(R.id.test_submit);
+
+
         viewPager = (ViewPager) findViewById(R.id.vPager);
-      back_img=(ImageView) findViewById(R.id.login_img);
-        content= (TextView) findViewById(R.id.mian_context);
-        content.setText("试题测试界面");
+        back_img = (ImageView) findViewById(R.id.login_img);
+        content = (TextView) findViewById(R.id.mian_context);
+        content.setText("错题查看界面");
         myAdapter = new MyPagerAdapter(this);
         viewPager.setAdapter(myAdapter);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -112,24 +118,6 @@ public class TestActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-
-
-              if(position==testBeans.size()-1){
-                    //将底部布局换成提交按钮
-                    fm.removeAllViews();
-                    fm.addView(submit_v);
-                    isLast=true;
-
-                }
-
-                if(position<testBeans.size() - 1&&isLast){
-                    isLast=false;
-                    //v
-                    fm.removeAllViews();
-                    fm.addView(bottom_button);
-                }
-
-
                 viewPager.setCurrentItem(position);
             }
 
@@ -138,27 +126,45 @@ public class TestActivity extends AppCompatActivity {
 
             }
         });
-       //顶部返回按钮点击事件
 
-        back_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDialog();
-
-
-            }
-        });
         setClick();
         //获取数据
         getData();
     }
 
     public void getData() {
-        postConnection(GET_EXAMSERVLET,0,null);
+        userName = getIntent().getStringExtra("userName");
+        postConnection();
+    }
+
+    public void close(){
+        finish();
     }
 
     private void setClick() {
 
+
+        //顶部返回按钮点击事件
+
+        back_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(ErrorTestActivity.this).setTitle("系统提示").setMessage("您确定退出当前错题查看吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+
+                    }
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+
+
+            }
+        });
         lastPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,9 +174,8 @@ public class TestActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(i);
 
                 } else {
-                    Toast.makeText(TestActivity.this, "当前已经是第一题了!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ErrorTestActivity.this, "当前已经是第一题了!", Toast.LENGTH_SHORT).show();
                 }
-
 
             }
         });
@@ -183,70 +188,18 @@ public class TestActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(i);
 
                 } else {
-                    Toast.makeText(TestActivity.this, "当前已经是最后一题了!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ErrorTestActivity.this, "当前已经是最后一题了!", Toast.LENGTH_SHORT).show();
                 }
-
 
             }
         });
-        //提交试题
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //判断用户试题是否做完
-               boolean  flag=isFinished();
-                if(!flag){
-                    new AlertDialog.Builder(TestActivity.this).setTitle("系统提示").setMessage("您还有试题未完成，你确定提交吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                      //将用户数据爆粗到数据库
-
-
-                        }
-                    }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            return ;
-
-                        }
-                    }).show();
-
-                }
-                Gson gson=new Gson();
-                String json=gson.toJson(testBeans);
-                postConnection(INSERT_EXAMSERVLET,1,json);
-
-                Intent intent=new Intent(TestActivity.this,SubmitActivity.class);
-                app.datas.put("applicationBean",testBeans);
-                startActivity(intent);
-                finish();
-
-
-            }
-        });
-
-
-    }
-
-    private boolean isFinished() {
-        boolean flag=false;
-        for(TestBean testBean:testBeans) {
-            if (testBean.getU_choice() == null){
-
-                return flag;
-            }
-
-        }
-        flag=true;
-        return flag;
 
 
     }
 
     //弹出对话框
-    public void openDialog(){
-        new AlertDialog.Builder(TestActivity.this).setTitle("系统提示").setMessage("您确定退出当前测试吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+    public void openDialog() {
+        new AlertDialog.Builder(ErrorTestActivity.this).setTitle("系统提示").setMessage("您确定退出当前错题查看吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish();
@@ -261,16 +214,11 @@ public class TestActivity extends AppCompatActivity {
 
     }
 
-    public void postConnection(String url,final int flag,final String json) {//post提交数据请求,获取批量视频
-        //userName = "wp2";
+    public void postConnection() {//post提交数据请求
+        userName = "wp2";
         OkHttpClient mOkHttpClient = new OkHttpClient();
-        RequestBody requestBodyPost=null;
-        if(flag==1)
-            requestBodyPost = new FormBody.Builder().add("userName",userName).add("json", json).build();
-        else{
-            requestBodyPost = new FormBody.Builder().add("userName",userName).build();
-        }
-        Request requestPost = new Request.Builder().url(url).post(requestBodyPost).build();
+        RequestBody requestBodyPost = new FormBody.Builder().add("userName", userName).build();
+        Request requestPost = new Request.Builder().url(ERROR_EXAMSERVLET).post(requestBodyPost).build();
         mOkHttpClient.newCall(requestPost).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -279,20 +227,23 @@ public class TestActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                String result = response.body().string();
+                Message msg = new Message();
+                if(result.equals("[]")){
 
-                if (json==null) {
-                    String result = response.body().string();
-                    Gson gson = new Gson();
+                    handler.sendEmptyMessage(0);
+                    return ;
 
-                    testBeans = gson.fromJson(result, new TypeToken<List<TestBean>>() {
-                    }.getType());
-                    Message msg = new Message();
-                    msg.obj = testBeans;
-                    handler.sendMessage(msg);
+
                 }
+                Gson gson = new Gson();
 
+                testBeans = gson.fromJson(result, new TypeToken<List<TestBean>>() {
+                }.getType());
+                msg.what=1;
 
-
+                msg.obj = testBeans;
+                handler.sendMessage(msg);
 
 
             }
@@ -300,10 +251,6 @@ public class TestActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
 
     class MyPagerAdapter extends PagerAdapter {
         Context context;
@@ -325,11 +272,9 @@ public class TestActivity extends AppCompatActivity {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            //
 
 
             container.addView(baseViews.get(position).getView());
-
             return baseViews.get(position).getView();
 
 
@@ -342,9 +287,8 @@ public class TestActivity extends AppCompatActivity {
 
         public void setDatas(List<TestBean> testBeens) {
             BaseView baseView;
-
             for (int i = 0; i < testBeens.size(); i++) {
-                baseView = new BaseView(context, testBeens.get(i), false);
+                baseView = new BaseView(context, testBeens.get(i), true);
                 baseViews.add(baseView);
             }
             myAdapter.notifyDataSetChanged();

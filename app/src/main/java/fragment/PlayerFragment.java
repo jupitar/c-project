@@ -26,9 +26,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import activity.MainActivity;
-import activity.PlayActivity;
-import activity.R;
+import afasfafsafsdfad.MainActivity;
+import afasfafsafsdfad.PlayActivity;
+import afasfafsafsdfad.R;
 import bean.MovieInfor;
 import okhttp3.Call;
 import okhttp3.Callback;

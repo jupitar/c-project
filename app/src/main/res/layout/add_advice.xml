@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="activity.MainActivity"
+    tools:context="afasfafsafsdfad.MainActivity"
     android:background="#7549DA92">
 
     <RelativeLayout
@@ -83,13 +83,9 @@
 
     </RelativeLayout>
 
-
-
-
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_alignParentBottom="true"
 
         android:paddingLeft="5dp"
@@ -98,7 +94,7 @@
         <EditText
             android:id="@+id/leave_mes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:hint="请留下QQ,邮箱或者手机号，方便答疑解惑"
            />

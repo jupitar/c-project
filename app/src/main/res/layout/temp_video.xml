@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="250dp">
 
-    <io.vov.vitamio.widget.VideoView
+    <view.MyVideoView
         android:id="@+id/buffer"
         android:layout_width="match_parent"
         android:layout_height="250dp" />
@@ -102,7 +102,10 @@
             android:layout_marginRight="-10dp"
             android:layout_toLeftOf="@id/total_time"
             android:layout_toRightOf="@id/current_time"
-            android:progressDrawable="@drawable/seekbar_style"/>
+            android:thumb="@null"
+
+            android:progressDrawable="@drawable/seekbar_style"
+           />
     </RelativeLayout>
         </RelativeLayout>
 

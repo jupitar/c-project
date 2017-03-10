@@ -1,4 +1,4 @@
-package activity;
+package afasfafsafsdfad;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -141,14 +141,14 @@ public class MainActivity extends AppCompatActivity {
                 test_img.setImageResource(R.mipmap.gray_test);
                 test_text.setTextColor(Color.GRAY);
 
-                settings_img.setImageResource(R.mipmap.gray_me);
+                settings_img.setImageResource(R.mipmap.gray_setting);
                 settings_text.setTextColor(Color.GRAY);
                 break;
             case 1:
                 play_img.setImageResource(R.mipmap.gray_play);
                 play_text.setTextColor(Color.GRAY);
 
-                settings_img.setImageResource(R.mipmap.gray_me);
+                settings_img.setImageResource(R.mipmap.gray_setting);
                 settings_text.setTextColor(Color.GRAY);
                 break;
             case 2:
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 play_text.setTextColor(Color.GRAY);
                 test_img.setImageResource(R.mipmap.gray_test);
                 test_text.setTextColor(Color.GRAY);
-                settings_img.setImageResource(R.mipmap.gray_me);
+                settings_img.setImageResource(R.mipmap.gray_setting);
                 settings_text.setTextColor(Color.GRAY);
                 break;
             case 3:
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
            
             case R.id.ll_settings:
 
-                settings_img.setImageResource(R.mipmap.blue_me);
+                settings_img.setImageResource(R.mipmap.blue_setting);
 
                 settings_text.setTextColor(Color.BLUE);
                 break;

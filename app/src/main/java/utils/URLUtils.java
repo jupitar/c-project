@@ -7,33 +7,38 @@ import java.net.InetAddress;
  */
 
 public class URLUtils {
-    public static String LOCAL_URL="http://10.0.2.2:8080/";
+   public static String LOCAL_URL="http://10.0.2.2:8080/";
+   // public static String LOCAL_URL="http://192.168.1.103:8080/";
+     public static  String Movie_URL=LOCAL_URL+"project/movie/";
     //视频URL
-    public static  String Movie_URL="http://192.168.1.102:8080/project/movie/";
+   // public static  String Movie_URL="http://192.168.1.103:8080/project/movie/";
     //网络url
-    public static  String BASIC_URL="http://192.168.1.102:8080/";
+    public static  String BASIC_URL="http://192.168.1.103:8080/";
     //登录servlet
-    public static String LOGIN_SERVLET=BASIC_URL+"schoolproject/servlet/LoginServlet";
+    public static String LOGIN_SERVLET=LOCAL_URL+"schoolproject/servlet/LoginServlet";
     //注册servlet
-    public static String REGISTER_SERVLET=BASIC_URL+"schoolproject/servlet/RegisterServlet";
+    public static String REGISTER_SERVLET=LOCAL_URL+"schoolproject/servlet/RegisterServlet";
    //重置密码servlet
-    public static String RESET_SERVLET=BASIC_URL+"schoolproject/servlet/ResetServlet";
+    public static String RESET_SERVLET=LOCAL_URL+"schoolproject/servlet/ResetServlet";
    //获取视频信息servlet
-    public static String MOVIE_SERVLET=BASIC_URL+"schoolproject/servlet/MoviesServlet";
+    public static String MOVIE_SERVLET=LOCAL_URL+"schoolproject/servlet/MoviesServlet";
     //获取上次观看视频信息servlet
-    public static String LAST_INFOR_SERVLET=BASIC_URL+"schoolproject/servlet/LastMovieServlet";
+    public static String LAST_INFOR_SERVLET=LOCAL_URL+"schoolproject/servlet/LastMovieServlet";
 //获取视频评论列表
-    public static String COMMENT_SERVLET=BASIC_URL+"schoolproject/servlet/CommentServlet";
+    public static String COMMENT_SERVLET=LOCAL_URL+"schoolproject/servlet/CommentServlet";
     //更新视频信息
-    public static String UPDATE_MOVIE_SERVLET=BASIC_URL+"schoolproject/servlet/UpdateMovieServlet";
+    public static String UPDATE_MOVIE_SERVLET=LOCAL_URL+"schoolproject/servlet/UpdateMovieServlet";
    //获取总试题数目，已经做的试题数目，正确率
-    public static String UBASIC_EXAMSERVLET=BASIC_URL+"schoolproject/servlet/ExamServlet";
+    public static String UBASIC_EXAMSERVLET=LOCAL_URL+"schoolproject/servlet/ExamServlet";
     //获取批量试题练习
-    public static String GET_EXAMSERVLET=BASIC_URL+"schoolproject/servlet/GetExamServlet";
+    public static String GET_EXAMSERVLET=LOCAL_URL+"schoolproject/servlet/GetExamServlet";
     //错题信息查看
-    public static String ERROR_EXAMSERVLET=BASIC_URL+"schoolproject/servlet/ErrorExamServlet";
+    public static String ERROR_EXAMSERVLET=LOCAL_URL+"schoolproject/servlet/ErrorExamServlet";
     //插入数据
-    public static String INSERT_EXAMSERVLET=BASIC_URL+"schoolproject/servlet/InsertExamServlet";
+    public static String INSERT_EXAMSERVLET=LOCAL_URL+"schoolproject/servlet/InsertExamServlet";
+//是直接面更新密码
+public static String UPDATE_PSWERVLET=LOCAL_URL+"schoolproject/servlet/UpdatePswServlet";
+
 
     //获取本机IP地址
     public static  void  getUrl(){

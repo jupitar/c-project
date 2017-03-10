@@ -17,10 +17,10 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
-import activity.ErrorTestActivity;
-import activity.MainActivity;
-import activity.R;
-import activity.TestActivity;
+import afasfafsafsdfad.ErrorTestActivity;
+import afasfafsafsdfad.MainActivity;
+import afasfafsafsdfad.R;
+import afasfafsafsdfad.TestActivity;
 import bean.TestSummary;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -30,7 +30,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static utils.URLUtils.INSERT_EXAMSERVLET;
 import static utils.URLUtils.UBASIC_EXAMSERVLET;
 
 
@@ -41,7 +40,7 @@ import static utils.URLUtils.UBASIC_EXAMSERVLET;
 
 public class TestFragment extends Fragment {
     TextView total_number,finished_number,right_percent;
-    Button modern_test,look_error,insert_data;
+    Button modern_test,look_error;
     String userName="";
 
     MainActivity activity;
@@ -70,7 +69,7 @@ public class TestFragment extends Fragment {
 
         modern_test= (Button) v.findViewById(R.id.modern_test);
         look_error= (Button) v.findViewById(R.id.look_error);
-        insert_data=(Button) v.findViewById(R.id.sert_into);
+
         setClick();
 
         getDatas(userName);
@@ -104,18 +103,6 @@ public class TestFragment extends Fragment {
                 Intent intent =new Intent(getActivity(), ErrorTestActivity.class);
                 intent.putExtra("userName",userName);
                 startActivity(intent);
-            }
-        });
-        //插入数据
-
-        insert_data.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                postConnection( INSERT_EXAMSERVLET,userName);
-              /*  Intent intent =new Intent(getActivity(), ErrorTestActivity.class);
-
-                intent.putExtra("userName",userName);
-                startActivity(intent);*/
             }
         });
 

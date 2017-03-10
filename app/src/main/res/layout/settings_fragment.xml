@@ -16,10 +16,11 @@
             android:id="@+id/set_img"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@mipmap/blue_me"
+            android:src="@drawable/p_1"
             android:layout_gravity="center_vertical"
             />
         <TextView
+            android:id="@+id/settings_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -54,15 +55,7 @@
             android:layout_marginTop="20dp"
 
             >
-            <Button
-                android:id="@+id/exit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="退出"
-                android:textSize="20sp"
-                android:textColor="#ffffff"
-                android:background="#f21105"
-                />
+
 
         </RelativeLayout>
 

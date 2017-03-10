@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
 
-import activity.R;
+import afasfafsafsdfad.R;
 import bean.TestBean;
 
 /**

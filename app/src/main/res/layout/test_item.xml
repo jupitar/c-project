@@ -9,7 +9,7 @@
     android:layout_marginLeft="10dp"
 
     android:orientation="vertical"
-    tools:context="activity.MainActivity">
+    tools:context="afasfafsafsdfad.MainActivity">
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"

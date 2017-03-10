@@ -4,15 +4,15 @@
     android:id="@+id/av_play"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="activity.PlayActivity"
+    tools:context="afasfafsafsdfad.PlayActivity"
     android:orientation="vertical"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="120dp"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@color/colorAccent"
@@ -24,52 +24,56 @@
 
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="30dp"
             android:layout_gravity="center_vertical"
             android:text="总共有400道题"
             android:textSize="15sp"
            />
-        <TextView
-
-            android:id="@+id/finish_number"
-            android:layout_width="0dp"
-
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:text="已经完成100道"
-            android:textSize="15sp"/>
-        <TextView
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="40dp">
+            <TextView
 
-            android:id="@+id/right_percent"
-            android:layout_width="0dp"
+                android:id="@+id/finish_number"
+                android:layout_width="wrap_content"
 
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:text="正确率50%"
-            android:textSize="15sp"/>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center_vertical"
+                android:text="已经完成100道"
+                android:textSize="15sp"/>
+            <TextView
+
+                android:id="@+id/right_percent"
+                android:layout_width="wrap_content"
+
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_vertical"
+                android:text="正确率50%"
+                android:textSize="15sp"/>
+
+
+        </LinearLayout>
 
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/has_finished"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-    </LinearLayout>
 
 
 
     <Button
         android:id="@+id/modern_test"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
 
         android:layout_gravity="center_horizontal"
         android:textColor="#ffffff"
@@ -80,9 +84,11 @@
     </Button>
     <Button
         android:id="@+id/look_error"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:textColor="#ffffff"
         android:background="@color/colorPrimary"
         android:layout_gravity="center_horizontal"
@@ -90,18 +96,7 @@
         >
 
     </Button>
-    <Button
-        android:id="@+id/sert_into"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="30dp"
-        android:textColor="#ffffff"
-        android:background="@color/colorPrimary"
-        android:layout_gravity="center_horizontal"
-        android:text="插入数据库数据"
-        >
 
-    </Button>
 
 
 

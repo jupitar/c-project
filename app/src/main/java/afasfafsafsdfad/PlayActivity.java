@@ -1,4 +1,4 @@
-package activity;
+package afasfafsafsdfad;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,6 +16,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -38,7 +39,7 @@ import io.vov.vitamio.LibsChecker;
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.Vitamio;
 import io.vov.vitamio.widget.MediaController;
-import io.vov.vitamio.widget.VideoView;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -48,6 +49,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import utils.CustomMediaController;
 import utils.DensityUtil;
+import view.MyVideoView;
 
 import static utils.URLUtils.COMMENT_SERVLET;
 import static utils.URLUtils.Movie_URL;
@@ -69,7 +71,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
     ImageView pause_img,scren_img,add_comment_img,reset_img;
     private MediaController mMediaController;
     private CustomMediaController mCustomMediaController;
-    private  VideoView mVideoView;
+    private MyVideoView mVideoView;
     private MovieInfor movieInfor = null;
     int flag = 0;
     static SeekBar seekabar1, seekbar2;//视频进度
@@ -159,7 +161,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
         topView=findViewById(R.id.play_include);
         img_back= (ImageView) topView.findViewById(R.id.login_img);
         play_textView=(TextView) topView.findViewById(R.id.mian_context);
-        play_textView.setText("");
+
         LayoutInflater inflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         list_frameLayout=(FrameLayout) findViewById(R.id.comment_frame);
         v=inflater.inflate(R.layout.comment_list, null);
@@ -170,7 +172,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
         frameLayout=(FrameLayout) findViewById(R.id.view_replace);
 
       temp_video=inflater.inflate(R.layout.temp_video, null);
-        mVideoView = (VideoView) temp_video.findViewById(R.id.buffer);
+        mVideoView = (MyVideoView) temp_video.findViewById(R.id.buffer);
         temp_finish=inflater.inflate(R.layout.temp_finish, null);
         reset_img=(ImageView)temp_finish.findViewById(R.id.reset_img);
         frameLayout.addView(temp_video);
@@ -190,6 +192,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
         movieInfor.setUser_id(userName);
         if (movieInfor != null) {
             url = Movie_URL + movieInfor.getPage() + "/" + movieInfor.getUrl();
+            play_textView.setText(movieInfor.getMovie_name());
             //获取视频评论列表
             getComment_list(movieInfor.getDetail_id());
         }
@@ -240,6 +243,7 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
                     //强制设置屏幕处于横屏
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                     setVideoViewSale(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+
                     scren_img.setImageResource(R.drawable.half_screen);
                     return ;
                 }
@@ -502,9 +506,13 @@ public class PlayActivity extends AppCompatActivity implements MediaPlayer.OnInf
             //mVideoView.setVideoLayout(VideoView.VIDEO_LAYOUT_SCALE, 0);
 
             setVideoViewSale(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+            //移除半屏状态
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+       getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }else{
             setVideoViewSale(ViewGroup.LayoutParams.MATCH_PARENT, DensityUtil.dip2px(getApplication(),250));
-
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         }
 
         super.onConfigurationChanged(newConfig);

@@ -17,10 +17,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import activity.AboutActivity;
-import activity.ChangePswActivity;
-import activity.GettingAdviceActivity;
-import activity.R;
+import afasfafsafsdfad.AboutActivity;
+import afasfafsafsdfad.ChangePswActivity;
+import afasfafsafsdfad.GettingAdviceActivity;
+import afasfafsafsdfad.MainActivity;
+import afasfafsafsdfad.R;
 
 /**
  * Created by Administrator on 2017/1/8.
@@ -32,6 +33,10 @@ public class SettingFragment extends Fragment {
     ListView set_list;
     BasicAdapter baseAdapter;
     List<String> datas=new ArrayList<String>();
+    MainActivity mainActivity;
+    String userName="";
+    String psw;
+   TextView  settings_name;
 
 
     @Nullable
@@ -43,7 +48,13 @@ public class SettingFragment extends Fragment {
     }
 
     public void init(View v) {
+        mainActivity=(MainActivity) getActivity();
+        userName=mainActivity.getName();
+        psw=mainActivity.getPsw();
         set_list = (ListView) v.findViewById(R.id.set_list);
+        settings_name= (TextView) v.findViewById(R.id.settings_name);
+        settings_name.setText(userName);
+        datas.clear();
         datas.add("修改密码");
         datas.add("意见反馈");
         datas.add("版本更新");
@@ -58,6 +69,8 @@ public class SettingFragment extends Fragment {
 
                     case 0://修改密码
                         Intent  intent=new Intent(getActivity(), ChangePswActivity.class);
+                        intent.putExtra("userName",userName);
+                        intent.putExtra("psw",psw);
                         startActivity(intent);
                         break;
                     case 1://意见反馈
@@ -114,7 +127,7 @@ public class SettingFragment extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder viewHolder;
             if(convertView==null){
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.set_item
+                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.set_item
                         , null, false);
                 viewHolder=new ViewHolder();
                 viewHolder.textview= (TextView) convertView.findViewById(R.id.set_text);

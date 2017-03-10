@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="activity">
+    package="afasfafsafsdfad">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:name="application.MyApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
+        <activity android:name="afasfafsafsdfad.LoginActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 />
@@ -33,13 +33,13 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name="afasfafsafsdfad.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
 
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ForgetActivity" />
+        <activity android:name="afasfafsafsdfad.RegisterActivity" />
+        <activity android:name="afasfafsafsdfad.ForgetActivity" />
 
         <!-- 必须初始化 -->
         <activity
@@ -47,34 +47,36 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".SetPswActivity" />
+        <activity android:name="afasfafsafsdfad.SetPswActivity" />
         <activity
-            android:name=".PlayActivity"
+            android:name="afasfafsafsdfad.PlayActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
 
 
            />
         <activity
-            android:name=".AddCommentActivity"
+            android:name="afasfafsafsdfad.AddCommentActivity"
             android:screenOrientation="portrait"
             >
 
 
         </activity>
         <!--提交试卷成功activity-->
-        <activity android:name=".SubmitActivity"/>
+        <activity android:name="afasfafsafsdfad.SubmitActivity"/>
         <activity
             android:name="io.vov.vitamio.activity.InitActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-<activity android:name=".ErrorTestActivity"/>
-        <activity android:name=".TestActivity"/>
-        <activity android:name=".AboutActivity"/>
-        <activity android:name=".ChangePswActivity"/>
-        <activity android:name=".GettingAdviceActivity"/><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+<activity android:name="afasfafsafsdfad.ErrorTestActivity"/>
+        <activity android:name="afasfafsafsdfad.TestActivity"/>
+        <activity android:name="afasfafsafsdfad.AboutActivity"/>
+        <activity android:name="afasfafsafsdfad.ChangePswActivity"/>
+        <activity
+            android:name="afasfafsafsdfad.GettingAdviceActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

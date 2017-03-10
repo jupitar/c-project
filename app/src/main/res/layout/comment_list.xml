@@ -7,7 +7,7 @@
 
 
 
-    tools:context="activity.MainActivity">
+    tools:context="afasfafsafsdfad.MainActivity">
 
   <ListView
       android:id="@+id/comment_list"

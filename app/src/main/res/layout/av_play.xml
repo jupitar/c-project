@@ -4,7 +4,7 @@
     android:id="@+id/av_play"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="activity.PlayActivity">
+    tools:context="afasfafsafsdfad.PlayActivity">
     <include
         android:id="@+id/play_include"
         android:layout_width="match_parent"

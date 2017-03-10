@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context="activity.SetPswActivity">
+    tools:context="afasfafsafsdfad.SetPswActivity">
     <include
         android:id="@+id/setpsw_include"
         android:layout_width="match_parent"
@@ -27,14 +27,16 @@
             android:hint="@string/s_reset"
             android:gravity="left"
             android:textSize="20sp"
-            android:digits="0123456789abcdefghijklmnopqrstuvwxyz"
+            android:inputType="textPassword"
+            android:maxLines="1"
 
             />
         <EditText
             android:id="@+id/set_psw1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:digits="0123456789abcdefghijklmnopqrstuvwxyz"
+            android:inputType="textPassword"
+            android:maxLines="1"
             android:hint="@string/s_reset1"
             android:gravity="left"
             android:textSize="20sp"

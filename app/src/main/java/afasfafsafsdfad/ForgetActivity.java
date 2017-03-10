@@ -1,4 +1,4 @@
-package activity;
+package afasfafsafsdfad;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -186,8 +186,8 @@ public class ForgetActivity extends AppCompatActivity {
 
     //提交数据
     public void f_submit(View v) {
-        if (TextUtils.isEmpty(f_code.getText())) {
-            Toast.makeText(this, "验证码不能为空!", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(f_code.getText())||TextUtils.isEmpty(f_tel.getText())) {
+            Toast.makeText(this, "验证码或手机号不能为空!", Toast.LENGTH_SHORT).show();
             return;
         }
         //提交上验证码

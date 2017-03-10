@@ -7,7 +7,7 @@
 
 
 
-    tools:context="activity.MainActivity">
+    tools:context="afasfafsafsdfad.MainActivity">
     <include
         android:id="@+id/set_top"
         android:layout_width="match_parent"

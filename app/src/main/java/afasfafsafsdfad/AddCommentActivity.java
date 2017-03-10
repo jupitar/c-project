@@ -1,4 +1,4 @@
-package activity;
+package afasfafsafsdfad;
 
 import android.content.Context;
 import android.content.Intent;
@@ -40,10 +40,10 @@ public class AddCommentActivity extends AppCompatActivity {
     View add_include;
     ImageView img_back;
     TextView add_text;
-    ImageView back_img;
+
     EditText comment_content;
     Button comment_btn;
-    public static String BROCAST_ACTION="UPDATE_DATA";
+
     String username="";//用户名
     int page;
     String detail_id="";
@@ -87,11 +87,7 @@ public class AddCommentActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-              // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-               // LayoutInflater inflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                //view=inflater.inflate(R.layout.add_comment, null);
-                //imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-               // imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+
                 Intent intent=new Intent();
                 setResult(0,intent);
                 finish();

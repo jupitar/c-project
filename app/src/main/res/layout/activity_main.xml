@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="activity.MainActivity">
+    tools:context="afasfafsafsdfad.MainActivity">
 
     <include
         android:id="@+id/topBar"
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="我的"
+                android:text="设置"
                 android:textColor="#666666">
 
             </TextView>

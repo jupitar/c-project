@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="activity.MainActivity">
+    tools:context="afasfafsafsdfad.MainActivity">
 
     <include
         android:id="@+id/register_include"
@@ -55,7 +55,7 @@
             android:gravity="left"
             android:hint="@string/hintPas"
             android:inputType="textPassword"
-            android:maxLength="10"
+
             android:maxLines="1" />
     </LinearLayout>
 
